@@ -23,7 +23,10 @@ declare
   i           integer;
 begin
   select id into v_branch from public.branches order by id limit 1;
-  if v_branch is null then raise exception 'ไม่มีข้อมูลใน public.branches'; end if;
+  -- ฐานข้อมูลใหม่ที่ยังไม่มีสาขา: สร้างสาขาชั่วคราวในรอบทดสอบนี้ (ถูก ROLLBACK ตอนท้าย ไม่ทิ้งข้อมูล)
+  if v_branch is null then
+    insert into public.branches (name) values ('__smoke_test__') returning id into v_branch;
+  end if;
 
   insert into auth.users (id, email) values (v_admin, 'sr-test-admin@example.com'), (v_admin2, 'sr-test-off@example.com');
   insert into stock_request.admin_profiles (id, display_name, email) values (v_admin, 'แอดมินทดสอบ', 'sr-test-admin@example.com');

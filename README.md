@@ -11,6 +11,7 @@
 
 1. **สร้างโปรเจกต์ Supabase ใหม่** (เลือก region ใกล้ผู้ใช้ เช่น Singapore / Tokyo)
 2. **ติดตั้งฐานข้อมูล:** Supabase → SQL Editor → วางไฟล์ [`supabase/setup-all.sql`](supabase/setup-all.sql) ทั้งไฟล์ → Run (ถ้ามีกล่อง "Potential issue detected" กด Run query)
+   ไฟล์นี้อยู่ใน transaction เดียว ถ้ามีบรรทัดไหน Error จะไม่มีอะไรถูกสร้างเลย แก้แล้วรันซ้ำได้ · ไฟล์ประกอบจาก `supabase/migrations/` ถ้าเพิ่ม migration ใหม่ภายหลัง ให้รันไฟล์ migration นั้นต่อ
 3. **เปิด schema ให้ API:** Project Settings → Data API → Exposed schemas → เพิ่ม `stock_request` → Save
 4. **ตรวจผล (ไม่บังคับ):** รัน [`supabase/tests/stock_request_smoke_test.sql`](supabase/tests/stock_request_smoke_test.sql) ถ้าผ่านจะขึ้น `ALL STOCK REQUEST TESTS PASSED` (ทำใน transaction แล้ว rollback ไม่ทิ้งข้อมูล)
 5. **ตั้งค่า .env.local:** คัดลอก `.env.example` เป็น `.env.local` แล้วใส่ค่า (URL, anon key, service role key, รหัสผู้ดูแล, secret)
