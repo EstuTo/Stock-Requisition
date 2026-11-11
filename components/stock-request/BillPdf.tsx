@@ -28,11 +28,11 @@ Font.registerHyphenationCallback((word) => {
 
 const styles = StyleSheet.create({
   page: { padding: 28, fontFamily: 'THSarabunNew', fontSize: 13, color: '#1e293b' },
-  header: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10, borderBottom: '1.5px solid #ec4899', paddingBottom: 8 },
+  header: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10, borderBottom: '1.5px solid #6366f1', paddingBottom: 8 },
   title: { fontSize: 20, fontWeight: 'bold' },
   muted: { color: '#64748b', fontSize: 12 },
   row: { flexDirection: 'row', borderBottom: '0.5px solid #e2e8f0', paddingVertical: 4, alignItems: 'center' },
-  th: { flexDirection: 'row', backgroundColor: '#fce7f3', paddingVertical: 4, fontWeight: 'bold' },
+  th: { flexDirection: 'row', backgroundColor: '#e0e7ff', paddingVertical: 4, fontWeight: 'bold' },
   photo: { width: 46, height: 46, objectFit: 'cover', borderRadius: 4 },
   cellNo: { width: 22, textAlign: 'center' },
   cellPhoto: { width: 54 },
@@ -40,11 +40,10 @@ const styles = StyleSheet.create({
   cellNum: { width: 52, textAlign: 'center' },
   cellNote: { width: 120, paddingRight: 2 },
   cellReceive: { width: 110, paddingLeft: 4 },
-  sub: { color: '#be185d', fontSize: 12 },
+  sub: { color: '#4338ca', fontSize: 12 },
   box: { width: 12, height: 12, border: '1.2px solid #1e293b', marginHorizontal: 'auto' },
   cellCheck: { width: 24 },
   cellCode: { width: 78, paddingRight: 2 },
-  logo: { width: 40, height: 40, borderRadius: 6, marginRight: 8 },
   signRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 28 },
   signBox: { width: '45%', textAlign: 'center' },
 });
@@ -69,7 +68,7 @@ function BillPages({ bill }: { bill: BillDetail }) {
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>ใบรายการแจ้งสินค้าใกล้หมด</Text>
-          <Text style={styles.muted}>Aemori</Text>
+          <Text style={styles.muted}>ระบบแจ้งสินค้าใกล้หมด</Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{bill.bill_no}</Text>
@@ -92,7 +91,7 @@ function BillPages({ bill }: { bill: BillDetail }) {
         </View>
       )}
       {showReceive && missingCount > 0 && (
-        <Text style={{ marginBottom: 8, color: '#be123c', fontWeight: 'bold' }}>*** สาขาแจ้งว่าได้รับไม่ครบ {missingCount} รายการ</Text>
+        <Text style={{ marginBottom: 8, color: '#0369a1', fontWeight: 'bold' }}>*** สาขาแจ้งว่าได้รับไม่ครบ {missingCount} รายการ</Text>
       )}
 
       <View style={styles.th} fixed>
@@ -119,7 +118,7 @@ function BillPages({ bill }: { bill: BillDetail }) {
           <Text style={styles.cellNum}>{qtyText(item)}</Text>
           <Text style={styles.cellNote}>{[item.staff_note, item.hq_note ? `HQ: ${item.hq_note}` : null].filter(Boolean).join(' / ') || '-'}</Text>
           {showReceive && (
-            <Text style={[styles.cellReceive, item.received_state === 'missing' ? { color: '#be123c', fontWeight: 'bold' } : item.received_state === 'ok' ? { color: '#047857' } : { color: '#94a3b8' }]}>
+            <Text style={[styles.cellReceive, item.received_state === 'missing' ? { color: '#0369a1', fontWeight: 'bold' } : item.received_state === 'ok' ? { color: '#047857' } : { color: '#94a3b8' }]}>
               {receivedText(item)}
               {item.received_checked_by ? `
 (${item.received_checked_by})` : ''}
@@ -171,12 +170,9 @@ function PickingSheetPage({ bill }: { bill: BillDetail }) {
   return (
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image src="/logo.png" style={styles.logo} />
-          <View>
-            <Text style={styles.title}>ใบจัดสินค้า</Text>
-            <Text style={styles.muted}>ระบบแจ้งสินค้าใกล้หมด · Aemori</Text>
-          </View>
+        <View>
+          <Text style={styles.title}>ใบจัดสินค้า</Text>
+          <Text style={styles.muted}>ระบบแจ้งสินค้าใกล้หมด</Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{bill.bill_no}</Text>

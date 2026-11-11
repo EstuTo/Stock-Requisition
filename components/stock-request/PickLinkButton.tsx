@@ -144,9 +144,9 @@ export default function PickLinkButton({ billId, billNo, branchName, className =
 
           <InlineError message={error} />
 
-          <div className="flex flex-wrap justify-end gap-2 border-t border-pink-50 pt-3">
+          <div className="flex flex-wrap justify-end gap-2 border-t border-indigo-50 pt-3">
             {active && (
-              <button type="button" onClick={revoke} disabled={busy} className="rounded-xl px-3 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50">
+              <button type="button" onClick={revoke} disabled={busy} className="rounded-xl px-3 py-2 text-xs font-bold text-sky-600 hover:bg-sky-50">
                 ยกเลิกลิงก์
               </button>
             )}

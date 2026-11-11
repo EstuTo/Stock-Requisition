@@ -115,7 +115,7 @@ export default function HqBillsPage() {
           <h1 className="text-2xl font-black">บิลทุกสาขา</h1>
           <p className="text-sm text-slate-500">
             บิลที่ยังไม่จบ เรียงใหม่ → เก่า · บิลที่ได้รับสินค้าแล้วและไม่มีปัญหาค้าง ดูได้ที่{' '}
-            <Link href="/admin/stock-request/branches" className="font-bold text-pink-600 hover:underline">
+            <Link href="/admin/stock-request/branches" className="font-bold text-indigo-600 hover:underline">
               🗂️ ประวัติบิล
             </Link>
           </p>
@@ -137,7 +137,7 @@ export default function HqBillsPage() {
           event.preventDefault();
           apply(filters);
         }}
-        className="grid gap-3 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-6"
+        className="grid gap-3 rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-6"
       >
         <input value={filters.q} onChange={(event) => setFilters({ ...filters, q: event.target.value })} placeholder="🔍 ค้นหาชื่อสาขา" className={`${inputClass} lg:col-span-2`} aria-label="ค้นหาชื่อสาขา" />
         <select value={filters.branch} onChange={(event) => setFilters({ ...filters, branch: event.target.value })} className={inputClass} aria-label="สาขา">
@@ -162,7 +162,7 @@ export default function HqBillsPage() {
           <button type="button" className={secondaryButton} onClick={() => { setFilters(EMPTY); apply(EMPTY); }}>
             ล้างตัวกรอง
           </button>
-          <button type="submit" className="rounded-xl bg-pink-500 px-5 py-2.5 text-sm font-black text-white hover:bg-pink-600">
+          <button type="submit" className="rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-black text-white hover:bg-indigo-600">
             ค้นหา
           </button>
         </div>
@@ -177,7 +177,7 @@ export default function HqBillsPage() {
       ) : rows.length === 0 ? (
         <EmptyState icon="🔎" title="ไม่พบบิลตามตัวกรอง" description="บิลที่จบแล้วอยู่ที่หน้า ประวัติบิล" />
       ) : (
-        <div className={`overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-sm ${loading ? 'opacity-60' : ''}`}>
+        <div className={`overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-sm ${loading ? 'opacity-60' : ''}`}>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px] text-sm">
               <thead className="bg-slate-50 text-left text-xs font-bold text-slate-500">
@@ -191,15 +191,15 @@ export default function HqBillsPage() {
                 </tr>
               </thead>
               {groups.map(([branchName, bills]) => (
-                <tbody key={branchName} className="divide-y divide-slate-100 border-t-4 border-pink-50">
-                  <tr className="bg-pink-50/70">
+                <tbody key={branchName} className="divide-y divide-slate-100 border-t-4 border-indigo-50">
+                  <tr className="bg-indigo-50/70">
                     <td colSpan={6} className="px-4 py-2">
-                      <span className="text-sm font-black text-pink-700">🏪 {branchName}</span>
+                      <span className="text-sm font-black text-indigo-700">🏪 {branchName}</span>
                       <span className="ml-2 text-xs font-bold text-slate-400">{bills.length} บิล</span>
                     </td>
                   </tr>
                   {bills.map((bill) => (
-                    <tr key={bill.id} className="hover:bg-pink-50/40">
+                    <tr key={bill.id} className="hover:bg-indigo-50/40">
                       <td className="px-4 py-3 pl-8 font-mono font-bold">{bill.bill_no}</td>
                       <td className="px-4 py-3">
                         <div className="flex flex-wrap items-center gap-1">
@@ -211,7 +211,7 @@ export default function HqBillsPage() {
                       <td className="px-4 py-3 text-xs text-slate-500">{formatDateTime(bill.created_at)}</td>
                       <td className="px-4 py-3 text-xs text-slate-500">{bill.billed_at ? `${formatDateTime(bill.billed_at)} · ${bill.billed_by_name ?? ''}` : '-'}</td>
                       <td className="px-4 py-3 text-right">
-                        <Link href={`/admin/stock-request/bills/${bill.id}`} className="rounded-lg bg-pink-50 px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-100">
+                        <Link href={`/admin/stock-request/bills/${bill.id}`} className="rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-700 hover:bg-indigo-100">
                           เปิดบิล →
                         </Link>
                       </td>

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
@@ -68,25 +67,22 @@ export default function HqShell({ children }: { children: ReactNode }) {
 
   // หน้าตาเดียวกับหลังบ้านระบบเบิกสินค้า (AdminNav)
   return (
-    <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-rose-50/30 px-3 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-indigo-50 via-white to-sky-50/30 px-3 py-6 text-slate-800 sm:px-6 sm:py-8 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-5">
-        <nav className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm shadow-pink-100/50 sm:p-5">
+        <nav className="rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm shadow-indigo-100/50 sm:p-5">
           <div className="flex items-center justify-between gap-4">
             <Link href={SR_HQ_HOME} className="flex min-w-0 items-center gap-3.5">
-              <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-pink-200 bg-pink-100 shadow-md shadow-pink-500/10">
-                <Image src="/logo.png" alt="Aemori" fill sizes="48px" className="object-cover" priority />
-              </span>
               <span className="min-w-0">
-                <span className="block text-xl font-black leading-tight tracking-tight text-slate-800">Aemori</span>
-                <span className="mt-0.5 block truncate text-xs font-bold uppercase tracking-widest text-pink-500">ระบบแจ้งสินค้าใกล้หมด</span>
+                <span className="block truncate text-xl font-black leading-tight tracking-tight text-slate-800">ระบบแจ้งสินค้าใกล้หมด</span>
+                <span className="mt-0.5 block truncate text-xs font-bold uppercase tracking-widest text-indigo-500">สำนักงานใหญ่</span>
               </span>
             </Link>
             <div className="flex items-center gap-3">
-              <div className="hidden items-center gap-1 rounded-xl border border-pink-100/80 bg-pink-50 p-1 text-xs font-bold md:flex">
+              <div className="hidden items-center gap-1 rounded-xl border border-indigo-100/80 bg-indigo-50 p-1 text-xs font-bold md:flex">
                 {links.map((link) => {
                   const active = link.href === SR_HQ_HOME ? pathname === link.href : pathname.startsWith(link.href);
                   return (
-                    <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={`rounded-lg px-4 py-2 transition-all ${active ? 'bg-white text-pink-600 shadow-sm shadow-pink-100' : 'text-slate-600 hover:bg-white/70 hover:text-pink-600'}`}>
+                    <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={`rounded-lg px-4 py-2 transition-all ${active ? 'bg-white text-indigo-600 shadow-sm shadow-indigo-100' : 'text-slate-600 hover:bg-white/70 hover:text-indigo-600'}`}>
                       {link.icon} {link.label}
                     </Link>
                   );
@@ -95,11 +91,11 @@ export default function HqShell({ children }: { children: ReactNode }) {
               {admin && <NotificationBell endpoint={`${SR_HQ_API}/notifications`} mode="list" onOpenBill={(billId) => router.push(`${SR_HQ_HOME}/bills/${billId}`)} />}
             </div>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-1 rounded-xl border border-pink-100 bg-pink-50 p-1 text-center text-[10px] font-bold md:hidden">
+          <div className="mt-4 grid grid-cols-3 gap-1 rounded-xl border border-indigo-100 bg-indigo-50 p-1 text-center text-[10px] font-bold md:hidden">
             {links.map((link) => {
               const active = link.href === SR_HQ_HOME ? pathname === link.href : pathname.startsWith(link.href);
               return (
-                <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={`rounded-lg px-1 py-2 ${active ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-600'}`}>
+                <Link key={link.href} href={link.href} aria-current={active ? 'page' : undefined} className={`rounded-lg px-1 py-2 ${active ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600'}`}>
                   <span className="block text-base">{link.icon}</span>
                   {link.label}
                 </Link>
@@ -107,7 +103,7 @@ export default function HqShell({ children }: { children: ReactNode }) {
             })}
           </div>
           <form action="/api/admin/logout" method="post" className="mt-3 flex flex-wrap items-center justify-end gap-2">
-            <button type="submit" className="rounded-lg px-3 py-1.5 text-[11px] font-bold text-slate-500 transition-colors hover:bg-rose-50 hover:text-rose-600">
+            <button type="submit" className="rounded-lg px-3 py-1.5 text-[11px] font-bold text-slate-500 transition-colors hover:bg-sky-50 hover:text-sky-600">
               ออกจากโหมดผู้ดูแล
             </button>
           </form>

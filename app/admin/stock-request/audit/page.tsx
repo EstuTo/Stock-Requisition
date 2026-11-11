@@ -65,7 +65,7 @@ export default function HqAuditPage() {
           setPage(1);
           setApplied(filters);
         }}
-        className="grid gap-3 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-5"
+        className="grid gap-3 rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-5"
       >
         <select value={filters.branch} onChange={(event) => setFilters({ ...filters, branch: event.target.value })} className={inputClass} aria-label="สาขา">
           <option value="">ทุกสาขา</option>
@@ -78,10 +78,10 @@ export default function HqAuditPage() {
         <input type="date" value={filters.from} onChange={(event) => setFilters({ ...filters, from: event.target.value })} className={inputClass} aria-label="ตั้งแต่วันที่" />
         <input type="date" value={filters.to} onChange={(event) => setFilters({ ...filters, to: event.target.value })} className={inputClass} aria-label="ถึงวันที่" />
         <label className="flex items-center gap-2 text-sm font-semibold text-slate-600">
-          <input type="checkbox" checked={filters.afterBilling} onChange={(event) => setFilters({ ...filters, afterBilling: event.target.checked })} className="h-4 w-4 accent-pink-600" />
+          <input type="checkbox" checked={filters.afterBilling} onChange={(event) => setFilters({ ...filters, afterBilling: event.target.checked })} className="h-4 w-4 accent-indigo-600" />
           เฉพาะแก้หลังตัดบิล
         </label>
-        <button type="submit" className="rounded-xl bg-pink-500 px-5 py-2.5 text-sm font-black text-white hover:bg-pink-600">
+        <button type="submit" className="rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-black text-white hover:bg-indigo-600">
           ค้นหา
         </button>
       </form>
@@ -93,7 +93,7 @@ export default function HqAuditPage() {
       ) : data.logs.length === 0 ? (
         <EmptyState icon="🕘" title="ไม่มีประวัติการแก้ไขตามตัวกรอง" />
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-sm">
+        <div className="overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[900px] text-sm">
               <thead className="bg-slate-50 text-left text-xs font-bold text-slate-500">
@@ -112,7 +112,7 @@ export default function HqAuditPage() {
                   <tr key={log.id} className={log.after_billing ? 'bg-amber-50/40' : ''}>
                     <td className="whitespace-nowrap px-3 py-2.5 text-slate-500">{formatDateTime(log.created_at)}</td>
                     <td className="px-3 py-2.5">
-                      <Link href={`/admin/stock-request/bills/${log.bill_id}`} className="font-mono font-bold text-pink-700 hover:underline">
+                      <Link href={`/admin/stock-request/bills/${log.bill_id}`} className="font-mono font-bold text-indigo-700 hover:underline">
                         {log.bill_no}
                       </Link>
                       <p className="text-slate-500">{log.branch_name}</p>

@@ -22,14 +22,17 @@ export async function POST(request: NextRequest) {
   }
   if (current && current.resetAt <= now) attempts.delete(clientKey);
 
-  const body = await request.json().catch(() => null) as { password?: string; remember?: boolean } | null;
+  const body = await request.json().catch(() => null) as { email?: string; password?: string; remember?: boolean } | null;
+  const expectedEmail = (process.env.ADMIN_EMAIL ?? '').trim().toLowerCase();
   const expectedPassword = process.env.ADMIN_ACCESS_PASSWORD ?? '';
   const sessionSecret = process.env.ADMIN_SESSION_SECRET ?? '';
-  if (!expectedPassword || !sessionSecret) {
+  if (!expectedEmail || !expectedPassword || !sessionSecret) {
     return NextResponse.json({ error: 'ระบบผู้ดูแลยังไม่ได้ตั้งค่า' }, { status: 503 });
   }
 
-  if (!body?.password || !safeEqual(body.password, expectedPassword)) {
+  const emailOk = safeEqual((body?.email ?? '').trim().toLowerCase(), expectedEmail);
+  const passwordOk = !!body?.password && safeEqual(body.password, expectedPassword);
+  if (!emailOk || !passwordOk) {
     const attempt = attempts.get(clientKey) ?? { count: 0, resetAt: now + WINDOW_MS };
     attempt.count += 1;
     attempts.set(clientKey, attempt);

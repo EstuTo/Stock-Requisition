@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ระบบแจ้งสินค้าใกล้หมด Aemori",
+  title: "ระบบแจ้งสินค้าใกล้หมด",
   description: "สาขาแจ้งสินค้าใกล้หมดพร้อมรูป สำนักงานใหญ่ตัดบิล แพ็คของ และจัดส่ง",
 };
 

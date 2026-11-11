@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'ระบบแจ้งสินค้าใกล้หมด · Aemori',
+  title: 'ระบบแจ้งสินค้าใกล้หมด',
   description: 'สาขาแจ้งรายการสินค้าใกล้หมดพร้อมรูป สำนักงานใหญ่ตรวจ ตัดบิล และจัดส่ง',
 };
 

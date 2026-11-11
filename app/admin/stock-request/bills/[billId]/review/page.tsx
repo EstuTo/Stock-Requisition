@@ -121,13 +121,13 @@ export default function ReviewBillPage() {
 
   return (
     <div className="space-y-5">
-      <Link href={`/admin/stock-request/bills/${bill.id}`} className="text-xs font-bold text-slate-500 hover:text-pink-600">
+      <Link href={`/admin/stock-request/bills/${bill.id}`} className="text-xs font-bold text-slate-500 hover:text-indigo-600">
         ← กลับไปแก้ไขบิล
       </Link>
-      <section className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm">
+      <section className="rounded-2xl border border-indigo-100 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="text-sm font-bold text-pink-600">{bill.branch_name}</p>
+            <p className="text-sm font-bold text-indigo-600">{bill.branch_name}</p>
             <h1 className="text-xl font-black">ตรวจสอบก่อนตัดบิล · <span className="font-mono">{bill.bill_no}</span></h1>
             <p className="text-xs text-slate-500">สร้างเมื่อ {formatDateTime(bill.created_at)}</p>
           </div>
@@ -137,7 +137,7 @@ export default function ReviewBillPage() {
           <div className="rounded-xl bg-slate-50 px-3 py-2">
             รายการทั้งหมด <b>{items.length}</b>
           </div>
-          <div className="rounded-xl bg-pink-50 px-3 py-2 text-pink-700">
+          <div className="rounded-xl bg-indigo-50 px-3 py-2 text-indigo-700">
             มีสินค้าทดแทน <b>{substituted.length}</b>
           </div>
         </div>
@@ -145,7 +145,7 @@ export default function ReviewBillPage() {
 
       <InlineError message={cutError} />
 
-      <div className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[680px] text-sm">
             <thead className="bg-slate-50 text-left text-xs font-bold text-slate-500">
@@ -174,7 +174,7 @@ export default function ReviewBillPage() {
                   <td className="px-3 py-3 text-xs">
                     {item.substitution ? (
                       <>
-                        <p className="font-bold text-pink-700">
+                        <p className="font-bold text-indigo-700">
                           {item.substitution.product_name}
                         </p>
                         <p className="text-slate-500">{item.substitution.product_code}</p>
@@ -196,10 +196,10 @@ export default function ReviewBillPage() {
         </div>
       </div>
 
-      <section className="space-y-4 rounded-2xl border border-pink-200 bg-pink-50/50 p-5">
+      <section className="space-y-4 rounded-2xl border border-indigo-200 bg-indigo-50/50 p-5">
         <div>
           <label className="block text-sm font-black text-slate-700">
-            ผู้รับผิดชอบบิลนี้ <span className="text-rose-500">*</span>
+            ผู้รับผิดชอบบิลนี้ <span className="text-sky-500">*</span>
             <input
               ref={responsibleRef}
               value={responsible}
@@ -207,12 +207,12 @@ export default function ReviewBillPage() {
                 setResponsible(event.target.value);
                 if (event.target.value.trim()) setResponsibleMissing(false);
               }}
-              className={`${inputClass} mt-1.5 ${responsibleMissing ? 'border-rose-400 ring-4 ring-rose-100' : ''}`}
+              className={`${inputClass} mt-1.5 ${responsibleMissing ? 'border-sky-400 ring-4 ring-sky-100' : ''}`}
               placeholder="ชื่อคนที่ดูแลบิลนี้ (สาขาจะเห็นชื่อนี้)"
               maxLength={100}
             />
           </label>
-          {responsibleMissing && <p className="mt-1 text-xs font-bold text-rose-600">⚠️ กรุณาระบุผู้รับผิดชอบบิลนี้</p>}
+          {responsibleMissing && <p className="mt-1 text-xs font-bold text-sky-600">⚠️ กรุณาระบุผู้รับผิดชอบบิลนี้</p>}
           {responsibles.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1.5">
               {responsibles.map((name) => {
@@ -225,7 +225,7 @@ export default function ReviewBillPage() {
                       setResponsible(name);
                       setResponsibleMissing(false);
                     }}
-                    className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${active ? 'bg-pink-500 text-white ring-pink-500' : 'bg-white text-pink-700 ring-pink-100'}`}
+                    className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${active ? 'bg-indigo-500 text-white ring-indigo-500' : 'bg-white text-indigo-700 ring-indigo-100'}`}
                   >
                     {active ? '✓' : '👤'} {name}
                   </button>
@@ -235,7 +235,7 @@ export default function ReviewBillPage() {
           )}
         </div>
         <label className="flex items-start gap-3 text-sm font-semibold">
-          <input type="checkbox" checked={checked} onChange={(event) => setChecked(event.target.checked)} className="mt-0.5 h-5 w-5 accent-pink-600" />
+          <input type="checkbox" checked={checked} onChange={(event) => setChecked(event.target.checked)} className="mt-0.5 h-5 w-5 accent-indigo-600" />
           ตรวจสอบสินค้า รูปภาพ จำนวนที่สั่ง สินค้าทดแทน และหมายเหตุครบถ้วนแล้ว
         </label>
         <div className="flex flex-wrap justify-end gap-2">

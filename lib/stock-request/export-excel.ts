@@ -53,7 +53,7 @@ function describe(data: JsonObject | null) {
  */
 export async function exportBillsExcel(bills: BillDetail[], filename: string) {
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = 'Aemori Stock Request';
+  workbook.creator = 'Stock Request';
   workbook.created = new Date();
 
   addSheet(

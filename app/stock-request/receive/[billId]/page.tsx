@@ -136,11 +136,11 @@ function ReceiveCheck() {
 
   return (
     <div className="space-y-4 pb-24">
-      <Link href="/stock-request/history" className="text-xs font-bold text-slate-500 hover:text-pink-600">
+      <Link href="/stock-request/history" className="text-xs font-bold text-slate-500 hover:text-indigo-600">
         ← ติดตามสถานะ
       </Link>
 
-      <section className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-xs font-bold text-slate-500">เช็คของที่ได้รับ</p>
@@ -160,14 +160,14 @@ function ReceiveCheck() {
             {checked}/{items.length}
           </span>
         </div>
-        {missing > 0 && <p className="mt-2 text-xs font-bold text-rose-600">ไม่ได้รับ/ไม่ครบ {missing} รายการ — สำนักงานใหญ่จะได้รับแจ้งเมื่อกดยืนยันรับ</p>}
+        {missing > 0 && <p className="mt-2 text-xs font-bold text-sky-600">ไม่ได้รับ/ไม่ครบ {missing} รายการ — สำนักงานใหญ่จะได้รับแจ้งเมื่อกดยืนยันรับ</p>}
         <button type="button" onClick={exportPdf} disabled={exporting} className={`${secondaryButton} mt-3 w-full`}>
           {exporting ? <Spinner className="h-4 w-4" /> : '📄'} ส่งออก PDF (ใช้เป็นหลักฐาน)
         </button>
       </section>
 
       {checkable && (
-        <div ref={nameRef} className={`rounded-2xl bg-white p-4 shadow-sm ring-1 ${nameMissing ? 'ring-4 ring-rose-200' : 'ring-pink-100'}`}>
+        <div ref={nameRef} className={`rounded-2xl bg-white p-4 shadow-sm ring-1 ${nameMissing ? 'ring-4 ring-sky-200' : 'ring-indigo-100'}`}>
           <StaffNameField
             label="ผู้เช็คของ"
             value={staffName}
@@ -178,7 +178,7 @@ function ReceiveCheck() {
             recent={recentStaff}
             known={knownStaff}
           />
-          {nameMissing && <p className="mt-1 text-xs font-bold text-rose-600">⚠️ ลงชื่อผู้เช็คของก่อน</p>}
+          {nameMissing && <p className="mt-1 text-xs font-bold text-sky-600">⚠️ ลงชื่อผู้เช็คของก่อน</p>}
         </div>
       )}
       <IssueBanner bill={bill} />
@@ -190,7 +190,7 @@ function ReceiveCheck() {
           const sub = item.substitution;
           const state = item.received_state;
           return (
-            <li key={item.id} className={`rounded-2xl border-2 bg-white p-3 shadow-sm ${state === 'ok' ? 'border-emerald-300 bg-emerald-50/50' : state === 'missing' ? 'border-rose-300 bg-rose-50/50' : 'border-pink-100'}`}>
+            <li key={item.id} className={`rounded-2xl border-2 bg-white p-3 shadow-sm ${state === 'ok' ? 'border-emerald-300 bg-emerald-50/50' : state === 'missing' ? 'border-sky-300 bg-sky-50/50' : 'border-indigo-100'}`}>
               <div className="flex gap-3">
                 <PhotoThumb url={sub?.photo_url ?? item.photo_url} alt={sub?.product_name ?? item.product_name} className="h-20 w-20" />
                 <div className="min-w-0 flex-1 text-sm">
@@ -205,7 +205,7 @@ function ReceiveCheck() {
                   )}
                   {state === 'ok' && <p className="mt-1 text-xs font-bold text-emerald-700">✓ ได้รับแล้ว · {item.received_checked_by}</p>}
                   {state === 'missing' && (
-                    <p className="mt-1 text-xs font-bold text-rose-600">
+                    <p className="mt-1 text-xs font-bold text-sky-600">
                       ✗ ไม่ได้รับ/ไม่ครบ: {item.received_note} · {item.received_checked_by}
                     </p>
                   )}
@@ -225,7 +225,7 @@ function ReceiveCheck() {
                     type="button"
                     disabled={busyId === item.id}
                     onClick={() => (state === 'missing' ? setState(item, null) : requireName() && setMissingFor(item))}
-                    className={`rounded-xl py-2.5 text-sm font-black ring-1 transition ${state === 'missing' ? 'bg-rose-500 text-white ring-rose-500' : 'bg-rose-50 text-rose-600 ring-rose-100'}`}
+                    className={`rounded-xl py-2.5 text-sm font-black ring-1 transition ${state === 'missing' ? 'bg-sky-500 text-white ring-sky-500' : 'bg-sky-50 text-sky-600 ring-sky-100'}`}
                   >
                     ✗ ไม่ได้รับ/ไม่ครบ
                   </button>
@@ -239,7 +239,7 @@ function ReceiveCheck() {
       <RemovedItems bill={bill} />
 
       {checkable && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-pink-100 bg-white/95 p-3 backdrop-blur">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-indigo-100 bg-white/95 p-3 backdrop-blur">
           <div className="mx-auto max-w-3xl">
             <button type="button" onClick={() => setConfirming(true)} className={`${primaryButton} w-full bg-none bg-emerald-500 py-3.5 text-base shadow-emerald-200 hover:bg-emerald-600`}>
               📦 ยืนยันรับสินค้า ({checked}/{items.length})
@@ -276,7 +276,7 @@ function ReceiveCheck() {
             {checked < items.length && (
               <span className="mb-2 block rounded-lg bg-amber-50 px-3 py-2 font-bold text-amber-800">ยังไม่ได้เช็ค {items.length - checked} รายการ — ยืนยันรับเลยหรือไม่?</span>
             )}
-            {missing > 0 && <span className="mb-2 block font-bold text-rose-600">มีรายการที่ไม่ได้รับ/ไม่ครบ {missing} รายการ — ระบบจะแจ้งสำนักงานใหญ่</span>}
+            {missing > 0 && <span className="mb-2 block font-bold text-sky-600">มีรายการที่ไม่ได้รับ/ไม่ครบ {missing} รายการ — ระบบจะแจ้งสำนักงานใหญ่</span>}
             บันทึกชื่อ <b>{staffName.trim() || '-'}</b> และเวลาปัจจุบันเป็นผู้รับสินค้า
           </>
         }
@@ -325,7 +325,7 @@ function MissingDialog({ item, onClose, onConfirm }: { item: BillItemDetail | nu
       <div className="space-y-2">
         <div className="flex flex-wrap gap-1.5">
           {quick.map((text) => (
-            <button key={text} type="button" onClick={() => setNote(text)} className="rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-600 ring-1 ring-rose-100">
+            <button key={text} type="button" onClick={() => setNote(text)} className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-sky-600 ring-1 ring-sky-100">
               {text}
             </button>
           ))}
@@ -333,7 +333,7 @@ function MissingDialog({ item, onClose, onConfirm }: { item: BillItemDetail | nu
         <textarea
           value={note}
           onChange={(event) => setNote(event.target.value)}
-          className={`${inputClass} min-h-20 ${error ? 'border-rose-400 ring-4 ring-rose-100' : ''}`}
+          className={`${inputClass} min-h-20 ${error ? 'border-sky-400 ring-4 ring-sky-100' : ''}`}
           maxLength={500}
           placeholder="หมายเหตุ (บังคับ) เช่น ได้มา 2 จาก 5 ชิ้น"
           autoFocus

@@ -93,7 +93,7 @@ function CurrentBill() {
 
   return (
     <div className="space-y-4">
-      <section className="rounded-3xl border border-pink-100 bg-white p-5 shadow-sm">
+      <section className="rounded-3xl border border-indigo-100 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="text-xs font-bold text-slate-500">บิลที่เปิดอยู่</p>
@@ -102,7 +102,7 @@ function CurrentBill() {
           </div>
           <StatusBadge status={bill.status} />
         </div>
-        <p className="mt-3 rounded-xl bg-pink-50 px-3 py-2 text-xs text-pink-700">
+        <p className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 text-xs text-indigo-700">
           เพิ่มสินค้าที่ใกล้หมดเข้าบิลนี้ได้เรื่อย ๆ ระบบบันทึกทันทีทุกครั้ง ไม่ต้องกดส่ง — ลงผิดแก้ไขหรือลบได้จนกว่าสำนักงานใหญ่จะตัดบิล
         </p>
         <button type="button" onClick={() => setAdding(true)} className={`${primaryButton} mt-4 w-full py-3.5 text-base`}>
@@ -121,7 +121,7 @@ function CurrentBill() {
       <section>
         <div className="mb-2 flex items-center justify-between">
           <h2 className="text-sm font-black text-slate-700">รายการในบิล ({bill.items.length})</h2>
-          <button type="button" onClick={load} className="text-xs font-bold text-pink-600 hover:underline">
+          <button type="button" onClick={load} className="text-xs font-bold text-indigo-600 hover:underline">
             รีเฟรช
           </button>
         </div>
@@ -140,7 +140,7 @@ function CurrentBill() {
                       <p className="font-bold text-slate-800">{item.product_name}</p>
                       {item.source === 'branch' && (
                         <div className="flex shrink-0 gap-1">
-                          <button type="button" onClick={() => setEditing(item)} className="rounded-lg bg-pink-50 px-2.5 py-1 text-xs font-bold text-pink-600 ring-1 ring-pink-100 hover:bg-pink-100">
+                          <button type="button" onClick={() => setEditing(item)} className="rounded-lg bg-indigo-50 px-2.5 py-1 text-xs font-bold text-indigo-600 ring-1 ring-indigo-100 hover:bg-indigo-100">
                             ✏️ แก้ไข
                           </button>
                           <button
@@ -152,7 +152,7 @@ function CurrentBill() {
                               setDeleteStaff(recent[0] ?? '');
                               setDeleting(item);
                             }}
-                            className="rounded-lg bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-600 ring-1 ring-rose-100 hover:bg-rose-100"
+                            className="rounded-lg bg-sky-50 px-2.5 py-1 text-xs font-bold text-sky-600 ring-1 ring-sky-100 hover:bg-sky-100"
                           >
                             🗑️ ลบ
                           </button>
@@ -161,7 +161,7 @@ function CurrentBill() {
                     </div>
                     <p className="text-xs text-slate-500">รหัส {item.product_code}</p>
                     <p className="mt-1 text-sm">
-                      สั่ง <span className="font-black text-pink-700">{formatNumber(item.stock_on_hand)}</span> ชิ้น
+                      สั่ง <span className="font-black text-indigo-700">{formatNumber(item.stock_on_hand)}</span> ชิ้น
                     </p>
                     {item.staff_note && <p className="mt-1 text-xs text-slate-600">📝 {item.staff_note}</p>}
                     {item.source === 'hq' && item.hq_note && <p className="mt-1 rounded-lg bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800">🏢 {item.hq_note}</p>}
@@ -253,8 +253,8 @@ function AddItemModal({ open, onClose, onSaved }: { open: boolean; onClose: () =
       if (input instanceof HTMLElement) input.focus({ preventScroll: true });
     });
   };
-  const fieldClass = (field: FormField) => (invalid?.field === field ? `${inputClass} border-rose-400 ring-4 ring-rose-100` : inputClass);
-  const fieldError = (field: FormField) => (invalid?.field === field ? <p className="mt-1 text-xs font-bold text-rose-600">⚠️ {invalid.message}</p> : null);
+  const fieldClass = (field: FormField) => (invalid?.field === field ? `${inputClass} border-sky-400 ring-4 ring-sky-100` : inputClass);
+  const fieldError = (field: FormField) => (invalid?.field === field ? <p className="mt-1 text-xs font-bold text-sky-600">⚠️ {invalid.message}</p> : null);
   // แก้ช่องที่ผิดแล้ว กรอบแดงหายเอง
   const edit = (field: FormField, setter: (value: string) => void) => (value: string) => {
     setter(value);
@@ -354,7 +354,7 @@ function AddItemModal({ open, onClose, onSaved }: { open: boolean; onClose: () =
             <button type="button" onClick={onClose} disabled={saving} className={secondaryButton}>
               {savedCount > 0 ? 'เสร็จแล้ว' : 'ยกเลิก'}
             </button>
-            <button type="submit" form="add-item-form" disabled={saving} onClick={() => (keepOpenRef.current = false)} className={`${secondaryButton} text-pink-600 ring-pink-200`}>
+            <button type="submit" form="add-item-form" disabled={saving} onClick={() => (keepOpenRef.current = false)} className={`${secondaryButton} text-indigo-600 ring-indigo-200`}>
               บันทึกแล้วปิด
             </button>
           </div>
@@ -367,7 +367,7 @@ function AddItemModal({ open, onClose, onSaved }: { open: boolean; onClose: () =
             ✅ บันทึก “{lastSaved}” แล้ว{savedCount > 1 ? ` (รอบนี้ ${savedCount} รายการ)` : ''} — ถ่ายรูปรายการถัดไปได้เลย
           </div>
         )}
-        <div ref={(el) => { fieldRefs.current.photo = el; }} className={invalid?.field === 'photo' ? 'rounded-2xl ring-4 ring-rose-200' : ''}>
+        <div ref={(el) => { fieldRefs.current.photo = el; }} className={invalid?.field === 'photo' ? 'rounded-2xl ring-4 ring-sky-200' : ''}>
           <CameraCapture
             key={entryKey}
             value={photo}
@@ -395,7 +395,7 @@ function AddItemModal({ open, onClose, onSaved }: { open: boolean; onClose: () =
         <Field label="หมายเหตุ (ไม่บังคับ)">
           <textarea value={note} onChange={(event) => setNote(event.target.value)} className={`${inputClass} min-h-20`} maxLength={1000} placeholder="เช่น ลูกค้าถามหาบ่อย" />
         </Field>
-        <div ref={(el) => { fieldRefs.current.staff = el; }} className={invalid?.field === 'staff' ? 'rounded-2xl p-1 ring-4 ring-rose-200' : ''}>
+        <div ref={(el) => { fieldRefs.current.staff = el; }} className={invalid?.field === 'staff' ? 'rounded-2xl p-1 ring-4 ring-sky-200' : ''}>
           <StaffNameField value={staffName} onChange={edit('staff', setStaffName)} recent={recentStaff} known={knownStaff} />
           {fieldError('staff')}
         </div>
@@ -482,7 +482,7 @@ function EditItemModal({ item, onClose, onSaved }: { item: BillItemDetail | null
       {item && (
         <form id="edit-item-form" onSubmit={submit} className="space-y-4">
           {!photo && (
-            <div className="flex items-center gap-3 rounded-xl bg-pink-50/60 p-3 ring-1 ring-pink-100">
+            <div className="flex items-center gap-3 rounded-xl bg-indigo-50/60 p-3 ring-1 ring-indigo-100">
               <PhotoThumb url={item.photo_url} alt={item.product_name} className="h-16 w-16" />
               <p className="text-xs font-semibold text-slate-600">รูปปัจจุบัน — ถ้าต้องการเปลี่ยน ถ่ายหรือเลือกรูปใหม่ด้านล่าง</p>
             </div>

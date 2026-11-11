@@ -69,12 +69,12 @@ export default function BranchesOverviewPage() {
       </div>
 
       {issues.length > 0 && (
-        <section className="rounded-2xl border border-rose-100 bg-white p-4 shadow-sm">
-          <h2 className="mb-3 text-base font-black text-rose-700">⚠️ บิลที่มีปัญหา รอแก้ไข ({issues.length})</h2>
+        <section className="rounded-2xl border border-sky-100 bg-white p-4 shadow-sm">
+          <h2 className="mb-3 text-base font-black text-sky-700">⚠️ บิลที่มีปัญหา รอแก้ไข ({issues.length})</h2>
           <ul className="space-y-2">
             {issues.map((issue) => (
               <li key={issue.id}>
-                <Link href={`/admin/stock-request/bills/${issue.id}`} className="block rounded-xl border border-rose-100 bg-rose-50/60 p-3 transition hover:border-rose-300 hover:bg-rose-50">
+                <Link href={`/admin/stock-request/bills/${issue.id}`} className="block rounded-xl border border-sky-100 bg-sky-50/60 p-3 transition hover:border-sky-300 hover:bg-sky-50">
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
                       <p className="font-black text-slate-800">{issue.branch_name}</p>
@@ -83,10 +83,10 @@ export default function BranchesOverviewPage() {
                         {issue.responsible_name ? ` · ผู้รับผิดชอบ ${issue.responsible_name}` : ''}
                       </p>
                     </div>
-                    <span className="text-[11px] font-bold text-rose-600">แจ้ง {formatDateTime(issue.issue_opened_at)}</span>
+                    <span className="text-[11px] font-bold text-sky-600">แจ้ง {formatDateTime(issue.issue_opened_at)}</span>
                   </div>
-                  {issue.issue_summary && <p className="mt-1.5 line-clamp-2 text-xs text-rose-700">{issue.issue_summary}</p>}
-                  <p className="mt-1 text-xs font-bold text-rose-600">เปิดบิลเพื่อแก้ไขปัญหา →</p>
+                  {issue.issue_summary && <p className="mt-1.5 line-clamp-2 text-xs text-sky-700">{issue.issue_summary}</p>}
+                  <p className="mt-1 text-xs font-bold text-sky-600">เปิดบิลเพื่อแก้ไขปัญหา →</p>
                 </Link>
               </li>
             ))}
@@ -96,11 +96,11 @@ export default function BranchesOverviewPage() {
 
       <section className="grid gap-4 lg:grid-cols-[280px_1fr]">
         {/* รายชื่อสาขา */}
-        <aside className="rounded-2xl border border-pink-100 bg-white p-3 shadow-sm lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto">
+        <aside className="rounded-2xl border border-indigo-100 bg-white p-3 shadow-sm lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:self-start lg:overflow-y-auto">
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            className="w-full rounded-xl border border-pink-100 bg-pink-50/40 px-3 py-2 text-sm outline-none focus:border-pink-300 focus:bg-white"
+            className="w-full rounded-xl border border-indigo-100 bg-indigo-50/40 px-3 py-2 text-sm outline-none focus:border-indigo-300 focus:bg-white"
             placeholder="🔍 ค้นหาสาขา / เลขที่บิล"
             aria-label="ค้นหา"
           />
@@ -128,7 +128,7 @@ export default function BranchesOverviewPage() {
           {shownGroups.length === 0 ? (
             <EmptyState icon="🗂️" title="ยังไม่มีบิลที่จบแล้ว" description="บิลที่สาขากดยืนยันได้รับสินค้าแล้ว (และไม่มีปัญหาค้าง) จะมาแสดงที่นี่" />
           ) : (
-            <div className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-sm">
+            <div className="overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[640px] text-sm">
                   <thead className="bg-slate-50 text-left text-xs font-bold text-slate-500">
@@ -142,8 +142,8 @@ export default function BranchesOverviewPage() {
                     </tr>
                   </thead>
                   {shownGroups.map((group) => (
-                    <tbody key={group.branch_id} className="divide-y divide-slate-100 border-t-4 border-pink-50">
-                      <tr className="bg-pink-50/70">
+                    <tbody key={group.branch_id} className="divide-y divide-slate-100 border-t-4 border-indigo-50">
+                      <tr className="bg-indigo-50/70">
                         <td colSpan={6} className="px-4 py-2">
                           <div className="flex items-center justify-between gap-2">
                             <span className="flex items-center gap-2 text-sm font-black text-slate-800">
@@ -153,7 +153,7 @@ export default function BranchesOverviewPage() {
                               {group.archived && <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-bold text-slate-500">ซ่อนแล้ว</span>}
                             </span>
                             {!group.archived && (
-                              <Link href={`/admin/stock-request/branches/${group.branch_id}`} className="text-xs font-bold text-pink-600 hover:underline">
+                              <Link href={`/admin/stock-request/branches/${group.branch_id}`} className="text-xs font-bold text-indigo-600 hover:underline">
                                 ดูสาขา →
                               </Link>
                             )}
@@ -175,7 +175,7 @@ export default function BranchesOverviewPage() {
   );
 }
 
-const BRANCH_COLORS = ['bg-pink-500', 'bg-violet-500', 'bg-sky-500', 'bg-emerald-500', 'bg-amber-500', 'bg-rose-500', 'bg-indigo-500', 'bg-teal-500', 'bg-fuchsia-500', 'bg-orange-500'];
+const BRANCH_COLORS = ['bg-indigo-500', 'bg-violet-500', 'bg-sky-500', 'bg-emerald-500', 'bg-amber-500', 'bg-sky-500', 'bg-indigo-500', 'bg-teal-500', 'bg-violet-500', 'bg-orange-500'];
 const branchColor = (branchId: number) => BRANCH_COLORS[branchId % BRANCH_COLORS.length];
 
 // อักษรย่อสาขา: ตัดคำว่า "สาขา" นำหน้าออก แล้วใช้ 2 ตัวแรก (ขึ้นต้นด้วยสระหน้า เ แ โ ใ ไ ใช้ 3 ตัว)
@@ -194,11 +194,11 @@ function BranchButton({ active, onClick, color, initials, name, sub }: { active:
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition ${active ? 'bg-pink-50 ring-1 ring-pink-200' : 'hover:bg-slate-50'}`}
+      className={`flex w-full items-center gap-2.5 rounded-xl px-2.5 py-2 text-left transition ${active ? 'bg-indigo-50 ring-1 ring-indigo-200' : 'hover:bg-slate-50'}`}
     >
       <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[11px] font-black text-white shadow-sm ${color}`}>{initials}</span>
       <span className="min-w-0">
-        <span className={`block truncate text-sm font-black ${active ? 'text-pink-700' : 'text-slate-700'}`}>{name}</span>
+        <span className={`block truncate text-sm font-black ${active ? 'text-indigo-700' : 'text-slate-700'}`}>{name}</span>
         <span className="block truncate text-[11px] text-slate-400">{sub}</span>
       </span>
     </button>
@@ -212,9 +212,9 @@ function HistoryRow({ bill, order }: { bill: BillDetail; order: number }) {
   const hadIssue = bill.issue_status === 'resolved';
   const names = bill.items.map((item) => item.substitution?.product_name ?? item.product_name);
   return (
-    <tr className="whitespace-nowrap hover:bg-pink-50/40">
+    <tr className="whitespace-nowrap hover:bg-indigo-50/40">
       <td className="px-4 py-3">
-        <span className={`rounded-full px-2 py-0.5 text-[11px] font-black ${order === 0 ? 'bg-pink-500 text-white' : 'bg-pink-50 text-pink-700'}`}>{ORDER_LABEL[order] ?? order + 1}</span>
+        <span className={`rounded-full px-2 py-0.5 text-[11px] font-black ${order === 0 ? 'bg-indigo-500 text-white' : 'bg-indigo-50 text-indigo-700'}`}>{ORDER_LABEL[order] ?? order + 1}</span>
       </td>
       <td className="px-4 py-3 font-mono font-bold">{bill.bill_no}</td>
       <td className="px-4 py-3 text-xs text-slate-500">
@@ -233,7 +233,7 @@ function HistoryRow({ bill, order }: { bill: BillDetail; order: number }) {
         </span>
       </td>
       <td className="px-4 py-3 text-right">
-        <Link href={`/admin/stock-request/bills/${bill.id}`} className="rounded-lg bg-pink-50 px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-100">
+        <Link href={`/admin/stock-request/bills/${bill.id}`} className="rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-700 hover:bg-indigo-100">
           เปิดบิล →
         </Link>
       </td>

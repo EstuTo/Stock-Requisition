@@ -86,27 +86,27 @@ export default function NotificationBell({
       <button
         type="button"
         onClick={onBellClick}
-        className="relative rounded-xl bg-white p-2.5 text-lg ring-1 ring-pink-100 transition hover:bg-pink-50"
+        className="relative rounded-xl bg-white p-2.5 text-lg ring-1 ring-indigo-100 transition hover:bg-indigo-50"
         aria-label={unread > 0 ? `การแจ้งเตือน ${unread} รายการที่ยังไม่อ่าน` : 'การแจ้งเตือน'}
         aria-expanded={mode === 'list' ? open : undefined}
       >
         🔔
         {unread > 0 && (
-          <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">
+          <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-sky-500 px-1 text-[10px] font-black text-white">
             {unread > 9 ? '9+' : unread}
           </span>
         )}
       </button>
       {mode === 'list' && open && (
-        <div className="fixed inset-x-3 top-24 z-40 overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-xl sm:absolute sm:inset-x-auto sm:right-0 sm:top-auto sm:mt-2 sm:w-[22rem]">
-          <div className="flex items-center justify-between border-b border-pink-50 px-4 py-3">
+        <div className="fixed inset-x-3 top-24 z-40 overflow-hidden rounded-2xl border border-indigo-100 bg-white shadow-xl sm:absolute sm:inset-x-auto sm:right-0 sm:top-auto sm:mt-2 sm:w-[22rem]">
+          <div className="flex items-center justify-between border-b border-indigo-50 px-4 py-3">
             <p className="text-sm font-black text-slate-800">การแจ้งเตือน</p>
-            <button type="button" onClick={() => setOpen(false)} aria-label="ปิด" className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-500 hover:bg-rose-100 hover:text-rose-600">
+            <button type="button" onClick={() => setOpen(false)} aria-label="ปิด" className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-500 hover:bg-sky-100 hover:text-sky-600">
               ✕
             </button>
           </div>
           <div className="max-h-96 overflow-y-auto">
-            {failed && <p className="px-4 py-3 text-xs font-semibold text-rose-600">โหลดการแจ้งเตือนไม่สำเร็จ</p>}
+            {failed && <p className="px-4 py-3 text-xs font-semibold text-sky-600">โหลดการแจ้งเตือนไม่สำเร็จ</p>}
             {items.length === 0 && !failed && <p className="px-4 py-8 text-center text-sm text-slate-400">ยังไม่มีการแจ้งเตือน</p>}
             {items.map((item) => (
               <button
@@ -118,7 +118,7 @@ export default function NotificationBell({
                     onOpenBill(item.bill_id);
                   }
                 }}
-                className="flex w-full gap-3 border-b border-slate-50 px-4 py-3 text-left transition hover:bg-pink-50/50"
+                className="flex w-full gap-3 border-b border-slate-50 px-4 py-3 text-left transition hover:bg-indigo-50/50"
               >
                 <span className="min-w-0">
                   <span className="block text-sm font-bold text-slate-800">{item.title}</span>

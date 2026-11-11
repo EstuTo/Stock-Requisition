@@ -79,7 +79,7 @@ export default function ManageBranchesPage() {
         <p className="text-sm text-slate-500">เพิ่มสาขาที่จะใช้แจ้งสินค้า · สาขาเรียงตามชื่อ · พนักงานเลือกสาขาจากรายการนี้</p>
       </div>
 
-      <form onSubmit={add} className="flex gap-2 rounded-2xl border border-pink-100 bg-white p-3 shadow-sm">
+      <form onSubmit={add} className="flex gap-2 rounded-2xl border border-indigo-100 bg-white p-3 shadow-sm">
         <input value={name} onChange={(event) => setName(event.target.value)} maxLength={200} placeholder="ชื่อสาขาใหม่ เช่น สาขาบุรีรัมย์" className={inputClass} aria-label="ชื่อสาขาใหม่" />
         <button type="submit" disabled={adding} className={`${primaryButton} shrink-0`}>
           {adding ? 'กำลังเพิ่ม...' : '➕ เพิ่ม'}
@@ -87,7 +87,7 @@ export default function ManageBranchesPage() {
       </form>
 
       {message && (
-        <p className={`rounded-xl px-4 py-2.5 text-sm font-bold ${message.tone === 'ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+        <p className={`rounded-xl px-4 py-2.5 text-sm font-bold ${message.tone === 'ok' ? 'bg-emerald-50 text-emerald-700' : 'bg-sky-50 text-sky-700'}`}>
           {message.tone === 'ok' ? '✅ ' : '⚠️ '}
           {message.text}
         </p>
@@ -98,7 +98,7 @@ export default function ManageBranchesPage() {
       ) : (
         <ul className="space-y-2">
           {branches.map((branch) => (
-            <li key={branch.id} className="flex items-center justify-between gap-3 rounded-2xl border border-pink-100 bg-white px-4 py-3 shadow-sm">
+            <li key={branch.id} className="flex items-center justify-between gap-3 rounded-2xl border border-indigo-100 bg-white px-4 py-3 shadow-sm">
               <span className="min-w-0 truncate font-bold text-slate-800">🏪 {branch.name}</span>
               <button
                 type="button"
@@ -106,7 +106,7 @@ export default function ManageBranchesPage() {
                   setRemoveError(null);
                   setRemoving(branch);
                 }}
-                className="shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold text-rose-600 hover:bg-rose-50"
+                className="shrink-0 rounded-lg px-3 py-1.5 text-xs font-bold text-sky-600 hover:bg-sky-50"
               >
                 ลบ
               </button>

@@ -80,7 +80,7 @@ export default function CutAllPanel({ onDone }: { onDone: () => void }) {
   const totalItems = candidates.reduce((sum, bill) => sum + bill.item_count, 0);
 
   return (
-    <section className="rounded-2xl border border-pink-100 bg-linear-to-r from-pink-50 to-rose-50 p-4 shadow-sm">
+    <section className="rounded-2xl border border-indigo-100 bg-linear-to-r from-indigo-50 to-sky-50 p-4 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-base font-black text-slate-800">✂️ ตัดบิลรอบนี้</p>
@@ -98,7 +98,7 @@ export default function CutAllPanel({ onDone }: { onDone: () => void }) {
           type="button"
           disabled={candidates.length === 0}
           onClick={openDialog}
-          className="rounded-2xl bg-linear-to-r from-pink-500 to-rose-500 px-6 py-3.5 text-base font-black text-white shadow-md transition hover:shadow-lg disabled:opacity-40 sm:px-8"
+          className="rounded-2xl bg-linear-to-r from-indigo-500 to-sky-500 px-6 py-3.5 text-base font-black text-white shadow-md transition hover:shadow-lg disabled:opacity-40 sm:px-8"
         >
           ✂️ ตัดบิลทุกสาขา
         </button>
@@ -127,7 +127,7 @@ export default function CutAllPanel({ onDone }: { onDone: () => void }) {
         message="ตัดบิลที่มีรายการของทุกสาขาพร้อมกัน — หลังตัดบิล สาขาจะแก้ไขบิลนี้ไม่ได้ และระบบเปิดบิลใหม่ให้ทุกสาขาอัตโนมัติ"
       >
         <div className="space-y-3">
-          <ul className="max-h-56 divide-y divide-pink-50 overflow-y-auto rounded-xl border border-pink-100 text-sm">
+          <ul className="max-h-56 divide-y divide-indigo-50 overflow-y-auto rounded-xl border border-indigo-100 text-sm">
             {candidates.map((bill) => (
               <li key={bill.id} className="flex items-center justify-between gap-2 px-3 py-2">
                 <span className="font-bold text-slate-700">{bill.branch_name}</span>
@@ -144,7 +144,7 @@ export default function CutAllPanel({ onDone }: { onDone: () => void }) {
                   key={item}
                   type="button"
                   onClick={() => setName(item)}
-                  className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-pink-600 text-white ring-pink-600' : 'bg-pink-50 text-pink-700 ring-pink-100'}`}
+                  className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-indigo-600 text-white ring-indigo-600' : 'bg-indigo-50 text-indigo-700 ring-indigo-100'}`}
                 >
                   {item}
                 </button>

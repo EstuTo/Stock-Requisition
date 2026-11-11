@@ -170,16 +170,16 @@ export default function PickLinkPage() {
 
   return (
     <main className="mx-auto w-full max-w-lg space-y-3 px-4 pb-32 pt-4">
-      <header className="rounded-3xl bg-linear-to-r from-pink-500 to-rose-400 p-5 text-white shadow-md">
-        <p className="text-xs font-bold text-white/80">🛒 รายการหยิบของ · Aemori</p>
+      <header className="rounded-3xl bg-linear-to-r from-indigo-500 to-sky-400 p-5 text-white shadow-md">
+        <p className="text-xs font-bold text-white/80">🛒 รายการหยิบของ</p>
         <h1 className="mt-1 text-2xl font-black">{data.bill.branch_name}</h1>
         <p className="font-mono text-sm font-bold text-white/90">{data.bill.bill_no}</p>
         <p className="mt-2 text-[11px] text-white/80">ลิงก์ใช้ได้ถึง {formatDateTime(data.expires_at)}</p>
       </header>
 
-      <section className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm">
         <label className="text-xs font-black text-slate-600" htmlFor="picker-name">
-          ชื่อผู้หยิบของ <span className="text-rose-500">*</span>
+          ชื่อผู้หยิบของ <span className="text-sky-500">*</span>
         </label>
         <input
           id="picker-name"
@@ -187,7 +187,7 @@ export default function PickLinkPage() {
           onChange={(event) => setName(event.target.value)}
           maxLength={100}
           placeholder="พิมพ์ชื่อของคุณ"
-          className="mt-1 w-full rounded-xl border border-pink-100 bg-pink-50/40 px-3 py-2.5 text-base outline-none focus:border-pink-300 focus:bg-white"
+          className="mt-1 w-full rounded-xl border border-indigo-100 bg-indigo-50/40 px-3 py-2.5 text-base outline-none focus:border-indigo-300 focus:bg-white"
         />
         {recentNames.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -196,7 +196,7 @@ export default function PickLinkPage() {
                 key={item}
                 type="button"
                 onClick={() => setName(item)}
-                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-pink-600 text-white ring-pink-600' : 'bg-pink-50 text-pink-700 ring-pink-100'}`}
+                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-indigo-600 text-white ring-indigo-600' : 'bg-indigo-50 text-indigo-700 ring-indigo-100'}`}
               >
                 {item}
               </button>
@@ -212,9 +212,9 @@ export default function PickLinkPage() {
             <p className="text-lg font-black text-amber-700">{counts.partial}</p>
             <p className="text-[11px] font-bold text-amber-700">ได้ไม่ครบ</p>
           </div>
-          <div className="rounded-xl bg-rose-50 py-2">
-            <p className="text-lg font-black text-rose-600">{counts.missing}</p>
-            <p className="text-[11px] font-bold text-rose-600">ไม่มี</p>
+          <div className="rounded-xl bg-sky-50 py-2">
+            <p className="text-lg font-black text-sky-600">{counts.missing}</p>
+            <p className="text-[11px] font-bold text-sky-600">ไม่มี</p>
           </div>
           <div className="rounded-xl bg-slate-50 py-2">
             <p className="text-lg font-black text-slate-600">{pending}</p>
@@ -242,7 +242,7 @@ export default function PickLinkPage() {
                 : choice.state === 'substitute'
                   ? 'border-sky-300'
                   : choice.state === 'missing'
-                    ? 'border-rose-300'
+                    ? 'border-sky-300'
                     : 'border-transparent';
           return (
             <li key={item.id} className={`rounded-3xl border-2 bg-white p-3.5 shadow-sm transition ${tone}`}>
@@ -254,7 +254,7 @@ export default function PickLinkPage() {
                   <p className="font-mono text-xs text-slate-400">{item.product_code}</p>
                   {item.replaced && <p className="text-[11px] font-bold text-sky-700">ใช้แทน {item.replaced}</p>}
                 </div>
-                <div className="flex shrink-0 flex-col items-center rounded-2xl bg-pink-50 px-3 py-1.5 text-pink-700">
+                <div className="flex shrink-0 flex-col items-center rounded-2xl bg-indigo-50 px-3 py-1.5 text-indigo-700">
                   <span className="text-[10px] font-bold">ต้องหยิบ</span>
                   <span className="text-2xl font-black leading-none">{formatNumber(item.stock_on_hand)}</span>
                   <span className="text-[10px] font-bold">ชิ้น</span>
@@ -279,7 +279,7 @@ export default function PickLinkPage() {
                   [
                     { state: 'partial', label: 'ได้ไม่ครบ', on: 'bg-amber-500 text-white', off: 'text-amber-700 ring-amber-200', disabled: (item.stock_on_hand ?? 0) < 2 },
                     { state: 'substitute', label: 'ใช้ของแทน', on: 'bg-sky-500 text-white', off: 'text-sky-700 ring-sky-200', disabled: false },
-                    { state: 'missing', label: 'ไม่มีของ', on: 'bg-rose-500 text-white', off: 'text-rose-600 ring-rose-200', disabled: false },
+                    { state: 'missing', label: 'ไม่มีของ', on: 'bg-sky-500 text-white', off: 'text-sky-600 ring-sky-200', disabled: false },
                   ] as const
                 ).map((option) => {
                   const active = choice.state === option.state;
@@ -394,7 +394,7 @@ export default function PickLinkPage() {
                 <div className="mt-2 space-y-1.5">
                   <div className="flex flex-wrap gap-1.5">
                     {MISSING_REASONS.map((reason) => (
-                      <button key={reason} type="button" onClick={() => setChoice(item.id, { note: reason })} className="rounded-full bg-white px-3 py-1 text-xs font-bold text-rose-600 ring-1 ring-rose-200">
+                      <button key={reason} type="button" onClick={() => setChoice(item.id, { note: reason })} className="rounded-full bg-white px-3 py-1 text-xs font-bold text-sky-600 ring-1 ring-sky-200">
                         {reason}
                       </button>
                     ))}
@@ -404,7 +404,7 @@ export default function PickLinkPage() {
                     onChange={(event) => setChoice(item.id, { note: event.target.value })}
                     maxLength={300}
                     placeholder="หมายเหตุ (บังคับ) เช่น ของหมด"
-                    className="w-full rounded-xl border border-rose-200 bg-white px-3 py-2 text-sm outline-none focus:border-rose-400"
+                    className="w-full rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm outline-none focus:border-sky-400"
                   />
                 </div>
               )}
@@ -414,14 +414,14 @@ export default function PickLinkPage() {
         })}
       </ul>
 
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-pink-100 bg-white/95 p-3 backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-indigo-100 bg-white/95 p-3 backdrop-blur">
         <div className="mx-auto max-w-lg space-y-2">
           <InlineError message={error} />
           <button
             type="button"
             onClick={save}
             disabled={saving || changes.length === 0}
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-pink-500 to-rose-500 py-3.5 text-base font-black text-white shadow-md transition disabled:opacity-40"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-indigo-500 to-sky-500 py-3.5 text-base font-black text-white shadow-md transition disabled:opacity-40"
           >
             {saving && <Spinner className="h-5 w-5" />}
             {changes.length ? `💾 บันทึก (${changes.length} รายการ)` : pending ? `เหลืออีก ${pending} รายการ` : '✅ บันทึกครบแล้ว'}

@@ -140,11 +140,11 @@ export default function PickingChecklistPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-4 pb-28">
-      <Link href="/admin/stock-request/pick" className="text-xs font-bold text-slate-500 hover:text-pink-600">
+      <Link href="/admin/stock-request/pick" className="text-xs font-bold text-slate-500 hover:text-indigo-600">
         ← บิลที่รอแพ็คของ
       </Link>
 
-      <section className="sticky top-2 z-20 rounded-2xl border border-pink-100 bg-white/95 p-4 shadow-sm backdrop-blur">
+      <section className="sticky top-2 z-20 rounded-2xl border border-indigo-100 bg-white/95 p-4 shadow-sm backdrop-blur">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-lg font-black">{bill.branch_name}</p>
@@ -152,21 +152,21 @@ export default function PickingChecklistPage() {
           </div>
           <div className="flex flex-col items-end gap-1.5">
             <StatusBadge status={bill.status} />
-            {pickable && <PickLinkButton billId={bill.id} billNo={bill.bill_no} branchName={bill.branch_name} className="rounded-lg bg-pink-50 px-2.5 py-1 text-xs font-bold text-pink-700 hover:bg-pink-100" />}
+            {pickable && <PickLinkButton billId={bill.id} billNo={bill.bill_no} branchName={bill.branch_name} className="rounded-lg bg-indigo-50 px-2.5 py-1 text-xs font-bold text-indigo-700 hover:bg-indigo-100" />}
           </div>
         </div>
         <div className="mt-3 flex items-center gap-3">
           <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-100">
-            <div className={`h-full rounded-full transition-all ${allPicked ? 'bg-emerald-500' : 'bg-linear-to-r from-pink-500 to-rose-400'}`} style={{ width: `${items.length ? (pickedCount / items.length) * 100 : 0}%` }} />
+            <div className={`h-full rounded-full transition-all ${allPicked ? 'bg-emerald-500' : 'bg-linear-to-r from-indigo-500 to-sky-400'}`} style={{ width: `${items.length ? (pickedCount / items.length) * 100 : 0}%` }} />
           </div>
-          <span className={`text-sm font-black ${allPicked ? 'text-emerald-600' : 'text-pink-600'}`}>
+          <span className={`text-sm font-black ${allPicked ? 'text-emerald-600' : 'text-indigo-600'}`}>
             {pickedCount}/{items.length}
           </span>
         </div>
         {pickable && (
           <div className="mt-3">
             <label className="block text-xs font-black text-slate-600">
-              ผู้แพ็คของ <span className="text-rose-500">*</span>
+              ผู้แพ็คของ <span className="text-sky-500">*</span>
               <input
                 ref={pickerRef}
                 value={picker}
@@ -174,12 +174,12 @@ export default function PickingChecklistPage() {
                   setPicker(event.target.value);
                   if (event.target.value.trim()) setPickerMissing(false);
                 }}
-                className={`${inputClass} mt-1 ${pickerMissing ? 'border-rose-400 ring-4 ring-rose-100' : ''}`}
+                className={`${inputClass} mt-1 ${pickerMissing ? 'border-sky-400 ring-4 ring-sky-100' : ''}`}
                 placeholder="ชื่อคนที่แพ็คของ"
                 maxLength={100}
               />
             </label>
-            {pickerMissing && <p className="mt-1 text-xs font-bold text-rose-600">⚠️ ลงชื่อผู้แพ็คของก่อน แล้วค่อยติ๊กรายการ</p>}
+            {pickerMissing && <p className="mt-1 text-xs font-bold text-sky-600">⚠️ ลงชื่อผู้แพ็คของก่อน แล้วค่อยติ๊กรายการ</p>}
             {pickers.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {pickers.map((name) => {
@@ -192,7 +192,7 @@ export default function PickingChecklistPage() {
                         setPicker(name);
                         setPickerMissing(false);
                       }}
-                      className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${active ? 'bg-pink-500 text-white ring-pink-500' : 'bg-pink-50 text-pink-700 ring-pink-100'}`}
+                      className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${active ? 'bg-indigo-500 text-white ring-indigo-500' : 'bg-indigo-50 text-indigo-700 ring-indigo-100'}`}
                     >
                       {active ? '✓' : '👤'} {name}
                     </button>
@@ -203,7 +203,7 @@ export default function PickingChecklistPage() {
           </div>
         )}
         <label className="mt-3 flex items-center gap-2 text-xs font-bold text-slate-500">
-          <input type="checkbox" checked={hidePicked} onChange={(event) => setHidePicked(event.target.checked)} className="h-4 w-4 accent-pink-500" />
+          <input type="checkbox" checked={hidePicked} onChange={(event) => setHidePicked(event.target.checked)} className="h-4 w-4 accent-indigo-500" />
           ซ่อนรายการที่แพ็คแล้ว
         </label>
       </section>
@@ -234,10 +234,10 @@ export default function PickingChecklistPage() {
                     void toggle(item);
                   }
                 }}
-                className={`flex w-full items-center gap-3 rounded-2xl border-2 p-3 text-left transition ${pickable ? 'cursor-pointer active:scale-[0.99]' : ''} ${picked ? 'border-emerald-300 bg-emerald-50' : 'border-pink-100 bg-white shadow-sm'}`}
+                className={`flex w-full items-center gap-3 rounded-2xl border-2 p-3 text-left transition ${pickable ? 'cursor-pointer active:scale-[0.99]' : ''} ${picked ? 'border-emerald-300 bg-emerald-50' : 'border-indigo-100 bg-white shadow-sm'}`}
               >
                 <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-2 text-xl font-black ${picked ? 'border-emerald-500 bg-emerald-500 text-white' : 'border-slate-300 bg-white text-transparent'}`}>
-                  {busyId === item.id ? <Spinner className="h-5 w-5 text-pink-500" /> : '✓'}
+                  {busyId === item.id ? <Spinner className="h-5 w-5 text-indigo-500" /> : '✓'}
                 </span>
                 <span onClick={(event) => event.stopPropagation()}>
                   <PhotoThumb url={sub?.photo_url ?? item.photo_url} alt={sub?.product_name ?? item.product_name} className="h-20 w-20" />
@@ -259,7 +259,7 @@ export default function PickingChecklistPage() {
                     </>
                   )}
                   <span className="mt-1 block text-xs text-slate-500">
-                    สั่ง <b className="text-pink-700">{formatNumber(item.stock_on_hand)}</b> ชิ้น
+                    สั่ง <b className="text-indigo-700">{formatNumber(item.stock_on_hand)}</b> ชิ้น
                   </span>
                   {(item.hq_note || item.staff_note) && (
                     <span className="mt-1 block text-[11px] text-slate-500">{[item.hq_note && `HQ: ${item.hq_note}`, item.staff_note && `สาขา: ${item.staff_note}`].filter(Boolean).join(' · ')}</span>
@@ -283,7 +283,7 @@ export default function PickingChecklistPage() {
                       ⚠️ ได้ไม่ครบ
                     </button>
                   )}
-                  <button type="button" onClick={() => requirePicker() && setRejecting(item)} className="rounded-xl bg-rose-50 py-2 text-rose-600 ring-1 ring-rose-100 hover:bg-rose-100">
+                  <button type="button" onClick={() => requirePicker() && setRejecting(item)} className="rounded-xl bg-sky-50 py-2 text-sky-600 ring-1 ring-sky-100 hover:bg-sky-100">
                     ✖ ไม่มีของ / ปฏิเสธ
                   </button>
                   <button type="button" onClick={() => requirePicker() && setSubstituting(item)} className="rounded-xl bg-amber-50 py-2 text-amber-700 ring-1 ring-amber-100 hover:bg-amber-100">
@@ -298,15 +298,15 @@ export default function PickingChecklistPage() {
       {hidePicked && shown.length === 0 && <p className="py-6 text-center text-sm font-bold text-emerald-600">✅ แพ็คครบทุกรายการแล้ว</p>}
 
       {removedItems.length > 0 && (
-        <section className="rounded-2xl border border-rose-100 bg-rose-50/40 p-3">
-          <p className="mb-2 text-sm font-black text-rose-700">ไม่ได้จัดส่ง ({removedItems.length})</p>
+        <section className="rounded-2xl border border-sky-100 bg-sky-50/40 p-3">
+          <p className="mb-2 text-sm font-black text-sky-700">ไม่ได้จัดส่ง ({removedItems.length})</p>
           <ul className="space-y-2">
             {removedItems.map((item) => (
-              <li key={item.id} className="flex items-center gap-3 rounded-xl bg-white p-2.5 ring-1 ring-rose-100">
+              <li key={item.id} className="flex items-center gap-3 rounded-xl bg-white p-2.5 ring-1 ring-sky-100">
                 <div className="min-w-0 flex-1 text-xs">
                   <p className="font-bold text-slate-500 line-through">{item.product_name}</p>
                   <p className="text-slate-400">รหัส {item.product_code}</p>
-                  {removeReason(item) && <p className="mt-0.5 font-semibold text-rose-600">เหตุผล: {removeReason(item)}</p>}
+                  {removeReason(item) && <p className="mt-0.5 font-semibold text-sky-600">เหตุผล: {removeReason(item)}</p>}
                 </div>
                 {pickable && (
                   <button
@@ -375,7 +375,7 @@ export default function PickingChecklistPage() {
       />
 
       {pickable && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-pink-100 bg-white/95 p-3 backdrop-blur">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-indigo-100 bg-white/95 p-3 backdrop-blur">
           <div className="mx-auto max-w-2xl">
             {/* ติ๊กครบ = แพ็คของเสร็จ (ติ๊กถูกในไทม์ไลน์) · จากนั้นกด "จัดส่ง" แยกอีกขั้น (ใส่ชื่อผู้ส่ง) */}
             {allPicked ? (
@@ -447,7 +447,7 @@ function RejectDialog({ item, onClose, onConfirm }: { item: BillItemDetail | nul
       <div className="space-y-2">
         <div className="flex flex-wrap gap-1.5">
           {quick.map((text) => (
-            <button key={text} type="button" onClick={() => setReason(text)} className="rounded-full bg-rose-50 px-3 py-1 text-xs font-bold text-rose-600 ring-1 ring-rose-100">
+            <button key={text} type="button" onClick={() => setReason(text)} className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-sky-600 ring-1 ring-sky-100">
               {text}
             </button>
           ))}
@@ -455,7 +455,7 @@ function RejectDialog({ item, onClose, onConfirm }: { item: BillItemDetail | nul
         <textarea
           value={reason}
           onChange={(event) => setReason(event.target.value)}
-          className={`${inputClass} min-h-20 ${error ? 'border-rose-400 ring-4 ring-rose-100' : ''}`}
+          className={`${inputClass} min-h-20 ${error ? 'border-sky-400 ring-4 ring-sky-100' : ''}`}
           maxLength={1000}
           placeholder="หมายเหตุ (บังคับ) เช่น สินค้าหมดสต็อก"
           autoFocus

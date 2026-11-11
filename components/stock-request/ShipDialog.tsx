@@ -80,7 +80,7 @@ export default function ShipDialog({
                 key={item}
                 type="button"
                 onClick={() => setName(item)}
-                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-pink-600 text-white ring-pink-600' : 'bg-pink-50 text-pink-700 ring-pink-100'}`}
+                className={`rounded-full px-3 py-1 text-xs font-bold ring-1 ${item === name.trim() ? 'bg-indigo-600 text-white ring-indigo-600' : 'bg-indigo-50 text-indigo-700 ring-indigo-100'}`}
               >
                 {item}
               </button>

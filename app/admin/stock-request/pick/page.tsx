@@ -63,26 +63,26 @@ export default function PickingListPage() {
             const percent = bill.total ? Math.round((bill.picked / bill.total) * 100) : 0;
             return (
               <li key={bill.id}>
-                <Link href={`/admin/stock-request/bills/${bill.id}/pick`} className="block rounded-2xl border border-pink-100 bg-white p-4 shadow-sm transition hover:border-pink-300 hover:shadow-md active:scale-[0.99]">
+                <Link href={`/admin/stock-request/bills/${bill.id}/pick`} className="block rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm transition hover:border-indigo-300 hover:shadow-md active:scale-[0.99]">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <p className="truncate text-base font-black text-slate-800">{bill.branch_name}</p>
                       <p className="font-mono text-xs text-slate-500">{bill.bill_no}</p>
                       <p className="text-[11px] text-slate-400">ตัดบิล {formatDateTime(bill.billed_at)}</p>
                     </div>
-                    <span className={`shrink-0 rounded-full px-3 py-1 text-sm font-black ${done ? 'bg-emerald-100 text-emerald-700' : 'bg-pink-100 text-pink-700'}`}>
+                    <span className={`shrink-0 rounded-full px-3 py-1 text-sm font-black ${done ? 'bg-emerald-100 text-emerald-700' : 'bg-indigo-100 text-indigo-700'}`}>
                       {done ? '✓ ครบแล้ว' : `${bill.picked}/${bill.total}`}
                     </span>
                   </div>
                   <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-slate-100">
-                    <div className={`h-full rounded-full transition-all ${done ? 'bg-emerald-500' : 'bg-linear-to-r from-pink-500 to-rose-400'}`} style={{ width: `${percent}%` }} />
+                    <div className={`h-full rounded-full transition-all ${done ? 'bg-emerald-500' : 'bg-linear-to-r from-indigo-500 to-sky-400'}`} style={{ width: `${percent}%` }} />
                   </div>
                 </Link>
                 {done && (
                   <button
                     type="button"
                     onClick={() => setShipping(bill)}
-                    className="mt-2 w-full rounded-2xl bg-linear-to-r from-pink-500 to-rose-500 py-3 text-base font-black text-white shadow-md transition hover:shadow-lg"
+                    className="mt-2 w-full rounded-2xl bg-linear-to-r from-indigo-500 to-sky-500 py-3 text-base font-black text-white shadow-md transition hover:shadow-lg"
                   >
                     🚚 จัดส่ง
                   </button>

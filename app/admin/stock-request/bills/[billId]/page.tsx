@@ -117,14 +117,14 @@ export default function HqBillDetailPage() {
 
   return (
     <div className="space-y-5">
-      <Link href="/admin/stock-request/bills" className="text-xs font-bold text-slate-500 hover:text-pink-600">
+      <Link href="/admin/stock-request/bills" className="text-xs font-bold text-slate-500 hover:text-indigo-600">
         ← บิลทุกสาขา
       </Link>
 
-      <section className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm">
+      <section className="rounded-2xl border border-indigo-100 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-sm font-bold text-pink-600">{bill.branch_name}</p>
+            <p className="text-sm font-bold text-indigo-600">{bill.branch_name}</p>
             <h1 className="font-mono text-2xl font-black">{bill.bill_no}</h1>
             <p className="text-xs text-slate-500">
               สร้างเมื่อ {formatDateTime(bill.created_at)} · {active.length} รายการ
@@ -209,7 +209,7 @@ export default function HqBillDetailPage() {
           </ul>
         )}
         {removed.length > 0 && (
-          <details className="rounded-2xl border border-pink-100 bg-white p-4">
+          <details className="rounded-2xl border border-indigo-100 bg-white p-4">
             <summary className="cursor-pointer text-sm font-bold text-slate-500">รายการที่ถูกนำออก ({removed.length})</summary>
             <ul className="mt-3 space-y-2">
               {removed.map((item) => (
@@ -217,7 +217,7 @@ export default function HqBillDetailPage() {
                   <span className="text-slate-400 line-through">
                     {item.product_name} ({item.product_code})
                   </span>
-                  <button type="button" onClick={() => setDialog({ kind: 'remove', item, removed: false })} className="text-xs font-bold text-pink-600 hover:underline">
+                  <button type="button" onClick={() => setDialog({ kind: 'remove', item, removed: false })} className="text-xs font-bold text-indigo-600 hover:underline">
                     นำกลับ
                   </button>
                 </li>
@@ -227,7 +227,7 @@ export default function HqBillDetailPage() {
         )}
       </section>
 
-      <section className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm">
         <h2 className="mb-3 text-base font-black">ประวัติการแก้ไข (Audit Log)</h2>
         <AuditList logs={bill.audit_logs} itemNames={itemNames} />
       </section>
@@ -262,7 +262,7 @@ function ItemRow({ item, index, bill, onAction, onNotice }: { item: BillItemDeta
   const pending = bill.status === 'pending';
 
   return (
-    <li className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm">
+    <li className="rounded-2xl border border-indigo-100 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-4 md:flex-row">
         <div className="flex flex-1 gap-3">
           <span className="mt-1 w-6 shrink-0 text-center text-xs font-black text-slate-400">{index + 1}</span>
@@ -277,7 +277,7 @@ function ItemRow({ item, index, bill, onAction, onNotice }: { item: BillItemDeta
             {item.picked_at && <p className="mt-1 text-[11px] font-bold text-slate-500">📦 แพ็คแล้ว{item.picked_by ? ` โดย ${item.picked_by}` : ''} · {formatDateTime(item.picked_at)}</p>}
             {item.received_state === 'ok' && <p className="mt-1 text-xs font-bold text-emerald-700">✓ สาขาได้รับแล้ว · {item.received_checked_by}</p>}
             {item.received_state === 'missing' && (
-              <p className="mt-1 rounded-lg bg-rose-50 px-2 py-1 text-xs font-bold text-rose-600">
+              <p className="mt-1 rounded-lg bg-sky-50 px-2 py-1 text-xs font-bold text-sky-600">
                 ✗ สาขาแจ้งไม่ได้รับ/ไม่ครบ: {item.received_note} · {item.received_checked_by}
               </p>
             )}
@@ -292,15 +292,15 @@ function ItemRow({ item, index, bill, onAction, onNotice }: { item: BillItemDeta
             <button type="button" onClick={() => onAction({ kind: 'edit', item })} className="rounded-lg bg-slate-100 px-2 py-2 text-slate-700 hover:bg-slate-200">
               แก้ไข
             </button>
-            <button type="button" onClick={() => onAction({ kind: 'sub', item })} className="rounded-lg bg-pink-50 px-2 py-2 text-pink-700 hover:bg-pink-100">
+            <button type="button" onClick={() => onAction({ kind: 'sub', item })} className="rounded-lg bg-indigo-50 px-2 py-2 text-indigo-700 hover:bg-indigo-100">
               ทดแทน
             </button>
-            <button type="button" onClick={() => onAction({ kind: 'remove', item, removed: true })} className="rounded-lg bg-rose-50 px-2 py-2 text-rose-600 hover:bg-rose-100">
+            <button type="button" onClick={() => onAction({ kind: 'remove', item, removed: true })} className="rounded-lg bg-sky-50 px-2 py-2 text-sky-600 hover:bg-sky-100">
               ลบ
             </button>
           </div>
           {item.substitution && (
-            <button type="button" onClick={() => onAction({ kind: 'clear-sub', item })} className="text-[11px] font-bold text-slate-400 hover:text-rose-600">
+            <button type="button" onClick={() => onAction({ kind: 'clear-sub', item })} className="text-[11px] font-bold text-slate-400 hover:text-sky-600">
               ยกเลิกสินค้าทดแทน
             </button>
           )}
@@ -312,7 +312,7 @@ function ItemRow({ item, index, bill, onAction, onNotice }: { item: BillItemDeta
           <summary className="cursor-pointer font-bold">ประวัติสินค้าทดแทน ({item.substitution_history.length})</summary>
           <ul className="mt-1 space-y-1">
             {item.substitution_history.map((sub) => (
-              <li key={sub.id} className={sub.is_active ? 'font-bold text-pink-700' : 'line-through'}>
+              <li key={sub.id} className={sub.is_active ? 'font-bold text-indigo-700' : 'line-through'}>
                 {sub.product_name} ({sub.product_code}) — {sub.reason} · {sub.created_by_name ?? ''} {formatDateTime(sub.created_at)}
               </li>
             ))}
@@ -644,11 +644,11 @@ function ResolveIssueDialog({ open, bill, onClose, onDone }: { open: boolean; bi
               const choice = choices[item.id] ?? { mode: 'same', name: '', code: '' };
               const expected = item.substitution ?? item;
               return (
-                <li key={item.id} className="rounded-xl border border-rose-100 bg-rose-50/50 p-2.5">
+                <li key={item.id} className="rounded-xl border border-sky-100 bg-sky-50/50 p-2.5">
                   <p className="text-sm font-bold text-slate-800">
                     {expected.product_name} <span className="font-mono text-xs font-normal text-slate-500">({expected.product_code})</span>
                   </p>
-                  <p className="text-xs text-rose-600">✗ {item.received_note}</p>
+                  <p className="text-xs text-sky-600">✗ {item.received_note}</p>
                   <div className="mt-2 flex flex-wrap gap-1.5" role="radiogroup" aria-label={`วิธีแก้ ${expected.product_name}`}>
                     {modes.map((mode) => (
                       <button
@@ -658,7 +658,7 @@ function ResolveIssueDialog({ open, bill, onClose, onDone }: { open: boolean; bi
                         aria-checked={choice.mode === mode.value}
                         onClick={() => setChoice(item.id, { mode: mode.value })}
                         className={`rounded-full px-3 py-1 text-xs font-bold ring-1 transition ${
-                          choice.mode === mode.value ? 'bg-pink-600 text-white ring-pink-600' : 'bg-white text-slate-600 ring-slate-200 hover:ring-pink-300'
+                          choice.mode === mode.value ? 'bg-indigo-600 text-white ring-indigo-600' : 'bg-white text-slate-600 ring-slate-200 hover:ring-indigo-300'
                         }`}
                       >
                         {mode.label}
@@ -678,7 +678,7 @@ function ResolveIssueDialog({ open, bill, onClose, onDone }: { open: boolean; bi
         )}
         <div className="flex flex-wrap gap-1.5">
           {quick.map((text) => (
-            <button key={text} type="button" onClick={() => setNote(text)} className="rounded-full bg-pink-50 px-3 py-1 text-xs font-bold text-pink-700 ring-1 ring-pink-100">
+            <button key={text} type="button" onClick={() => setNote(text)} className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-bold text-indigo-700 ring-1 ring-indigo-100">
               {text}
             </button>
           ))}
@@ -782,7 +782,7 @@ function ShortfallButton({ item, onDone }: { item: BillItemDetail; onDone: (text
                 role="radio"
                 aria-checked={mode === option.value}
                 onClick={() => setMode(option.value)}
-                className={`rounded-full px-3 py-1.5 text-xs font-bold ring-1 transition ${mode === option.value ? 'bg-pink-600 text-white ring-pink-600' : 'bg-white text-slate-600 ring-slate-200 hover:ring-pink-300'}`}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold ring-1 transition ${mode === option.value ? 'bg-indigo-600 text-white ring-indigo-600' : 'bg-white text-slate-600 ring-slate-200 hover:ring-indigo-300'}`}
               >
                 {option.label}
               </button>

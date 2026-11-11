@@ -65,9 +65,9 @@ export default function SelectBranchPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fdf4f7] px-4 py-8 text-slate-800">
+    <main className="min-h-screen bg-[#f5f7fb] px-4 py-8 text-slate-800">
       <div className="mx-auto max-w-xl">
-        <Link href="/" className="text-xs font-bold text-slate-500 hover:text-pink-600">
+        <Link href="/" className="text-xs font-bold text-slate-500 hover:text-indigo-600">
           ← หน้าหลัก
         </Link>
         <h1 className="mt-3 text-2xl font-black">เลือกสาขา</h1>
@@ -102,16 +102,16 @@ export default function SelectBranchPage() {
                       type="button"
                       disabled={selecting !== null}
                       onClick={() => choose(branch)}
-                      className={`flex w-full items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-3.5 text-left shadow-sm transition hover:border-pink-300 hover:shadow-md disabled:opacity-60 ${isCurrent ? 'border-pink-400 ring-2 ring-pink-100' : 'border-slate-100'}`}
+                      className={`flex w-full items-center justify-between gap-3 rounded-2xl border bg-white px-4 py-3.5 text-left shadow-sm transition hover:border-indigo-300 hover:shadow-md disabled:opacity-60 ${isCurrent ? 'border-indigo-400 ring-2 ring-indigo-100' : 'border-slate-100'}`}
                     >
                       <span className="flex items-center gap-3">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-50 text-lg">🏪</span>
+                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-lg">🏪</span>
                         <span>
                           <span className="block text-sm font-bold text-slate-800">{branch.name}</span>
-                          {isCurrent && <span className="text-xs font-semibold text-pink-600">สาขาที่ใช้งานอยู่</span>}
+                          {isCurrent && <span className="text-xs font-semibold text-indigo-600">สาขาที่ใช้งานอยู่</span>}
                         </span>
                       </span>
-                      {selecting === branch.id ? <Spinner className="h-5 w-5 text-pink-500" /> : <span className="text-slate-300">›</span>}
+                      {selecting === branch.id ? <Spinner className="h-5 w-5 text-indigo-500" /> : <span className="text-slate-300">›</span>}
                     </button>
                   </li>
                 );

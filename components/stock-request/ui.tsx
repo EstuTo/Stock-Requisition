@@ -20,7 +20,7 @@ export function Spinner({ className = 'h-5 w-5' }: { className?: string }) {
 
 export function LoadingState({ label = 'กำลังโหลดข้อมูล...' }: { label?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 py-16 text-pink-500" role="status">
+    <div className="flex flex-col items-center justify-center gap-3 py-16 text-indigo-500" role="status">
       <Spinner className="h-8 w-8" />
       <p className="text-sm font-semibold text-slate-500">{label}</p>
     </div>
@@ -29,7 +29,7 @@ export function LoadingState({ label = 'กำลังโหลดข้อม�
 
 export function EmptyState({ icon = '📭', title, description, action }: { icon?: string; title: string; description?: string; action?: ReactNode }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-pink-200 bg-white/60 px-6 py-12 text-center">
+    <div className="flex flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-indigo-200 bg-white/60 px-6 py-12 text-center">
       <span className="text-4xl">{icon}</span>
       <p className="text-base font-bold text-slate-700">{title}</p>
       {description && <p className="max-w-sm text-sm text-slate-500">{description}</p>}
@@ -40,11 +40,11 @@ export function EmptyState({ icon = '📭', title, description, action }: { icon
 
 export function ErrorState({ message, onRetry }: { message: string; onRetry?: () => void }) {
   return (
-    <div role="alert" className="flex flex-col items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-6 py-10 text-center">
+    <div role="alert" className="flex flex-col items-center gap-3 rounded-2xl border border-sky-200 bg-sky-50 px-6 py-10 text-center">
       <span className="text-3xl">⚠️</span>
-      <p className="text-sm font-semibold text-rose-700">{message}</p>
+      <p className="text-sm font-semibold text-sky-700">{message}</p>
       {onRetry && (
-        <button type="button" onClick={onRetry} className="rounded-xl bg-white px-4 py-2 text-sm font-bold text-rose-600 ring-1 ring-rose-200 hover:bg-rose-100">
+        <button type="button" onClick={onRetry} className="rounded-xl bg-white px-4 py-2 text-sm font-bold text-sky-600 ring-1 ring-sky-200 hover:bg-sky-100">
           ลองใหม่
         </button>
       )}
@@ -55,7 +55,7 @@ export function ErrorState({ message, onRetry }: { message: string; onRetry?: ()
 export function InlineError({ message }: { message: string | null }) {
   if (!message) return null;
   return (
-    <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-2.5 text-sm font-semibold text-rose-700">
+    <div role="alert" className="rounded-xl border border-sky-200 bg-sky-50 px-3.5 py-2.5 text-sm font-semibold text-sky-700">
       {message}
     </div>
   );
@@ -97,14 +97,14 @@ export function Modal({
         aria-label={title}
         className={`flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl ${size === 'lg' ? 'sm:max-w-2xl' : 'sm:max-w-lg'}`}
       >
-        <div className="flex items-center justify-between border-b border-pink-100 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-indigo-100 px-5 py-4">
           <h2 className="text-lg font-black text-slate-800">{title}</h2>
           <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600" aria-label="ปิด">
             ✕
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4">{children}</div>
-        {footer && <div className="border-t border-pink-100 bg-pink-50/40 px-5 py-3.5">{footer}</div>}
+        {footer && <div className="border-t border-indigo-100 bg-indigo-50/40 px-5 py-3.5">{footer}</div>}
       </div>
     </div>
   );
@@ -145,7 +145,7 @@ export function ConfirmDialog({
             type="button"
             disabled={busy}
             onClick={onConfirm}
-            className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-black text-white shadow-sm disabled:opacity-60 ${tone === 'danger' ? 'bg-rose-500 hover:bg-rose-600' : 'bg-linear-to-r from-pink-500 to-rose-400 hover:opacity-90'}`}
+            className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-black text-white shadow-sm disabled:opacity-60 ${tone === 'danger' ? 'bg-sky-500 hover:bg-sky-600' : 'bg-linear-to-r from-indigo-500 to-sky-400 hover:opacity-90'}`}
           >
             {busy && <Spinner className="h-4 w-4" />}
             {confirmLabel}
@@ -210,7 +210,7 @@ export function Field({ label, hint, children, required }: { label: string; hint
     <label className="block">
       <span className="mb-1.5 block text-xs font-bold text-slate-600">
         {label}
-        {required && <span className="text-rose-500"> *</span>}
+        {required && <span className="text-sky-500"> *</span>}
       </span>
       {children}
       {hint && <span className="mt-1 block text-[11px] text-slate-400">{hint}</span>}
@@ -219,10 +219,10 @@ export function Field({ label, hint, children, required }: { label: string; hint
 }
 
 export const inputClass =
-  'block w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 disabled:bg-slate-50';
+  'block w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm font-medium text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 disabled:bg-slate-50';
 
 export const primaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-pink-500 to-rose-400 px-4 py-2.5 text-sm font-black text-white shadow-md shadow-pink-200 transition hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-indigo-500 to-sky-400 px-4 py-2.5 text-sm font-black text-white shadow-md shadow-indigo-200 transition hover:opacity-90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';
 
 export const secondaryButton =
   'inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50';

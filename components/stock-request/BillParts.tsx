@@ -41,15 +41,15 @@ export function StatusTimeline({ bill }: { bill: BillDetail }) {
       {steps.map((step, index) => (
         <li key={index} className="flex flex-col items-center text-center">
           <div className="flex w-full items-center">
-            <span className={`h-0.5 flex-1 ${index === 0 ? 'bg-transparent' : step.done || step.active ? 'bg-pink-400' : 'bg-slate-200'}`} />
+            <span className={`h-0.5 flex-1 ${index === 0 ? 'bg-transparent' : step.done || step.active ? 'bg-indigo-400' : 'bg-slate-200'}`} />
             <span
               className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black ${
-                step.done ? 'bg-pink-500 text-white' : step.active ? 'bg-amber-100 text-amber-700 ring-2 ring-amber-300' : 'bg-slate-100 text-slate-400'
+                step.done ? 'bg-indigo-500 text-white' : step.active ? 'bg-amber-100 text-amber-700 ring-2 ring-amber-300' : 'bg-slate-100 text-slate-400'
               }`}
             >
               {step.done ? '✓' : step.active ? '📦' : index + 1}
             </span>
-            <span className={`h-0.5 flex-1 ${index === steps.length - 1 ? 'bg-transparent' : index < lastDone ? 'bg-pink-400' : 'bg-slate-200'}`} />
+            <span className={`h-0.5 flex-1 ${index === steps.length - 1 ? 'bg-transparent' : index < lastDone ? 'bg-indigo-400' : 'bg-slate-200'}`} />
           </div>
           <span className={`mt-1.5 text-[11px] font-bold leading-tight ${step.done ? 'text-slate-700' : step.active ? 'text-amber-700' : 'text-slate-400'}`}>{step.label}</span>
           {step.done && step.time && <span className="mt-0.5 text-[10px] leading-tight text-slate-400">{formatDateTime(step.time)}</span>}
@@ -65,7 +65,7 @@ export function SubstitutionPair({ item }: { item: BillItemDetail }) {
   const sub = item.substitution;
   if (!sub) return null;
   return (
-    <div className="mt-3 grid gap-2 rounded-xl border border-pink-100 bg-pink-50/50 p-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+    <div className="mt-3 grid gap-2 rounded-xl border border-indigo-100 bg-indigo-50/50 p-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
       <div className="flex gap-2.5">
         <PhotoThumb url={item.photo_url} alt={item.product_name} className="h-14 w-14" />
         <div className="min-w-0 text-xs">
@@ -75,18 +75,18 @@ export function SubstitutionPair({ item }: { item: BillItemDetail }) {
           <p className="text-slate-500">สาขาสั่ง {formatNumber(item.stock_on_hand)} ชิ้น</p>
         </div>
       </div>
-      <span className="text-center text-lg text-pink-400 sm:px-1">→</span>
+      <span className="text-center text-lg text-indigo-400 sm:px-1">→</span>
       <div className="flex gap-2.5">
         <PhotoThumb url={sub.photo_url} alt={sub.product_name} className="h-14 w-14" />
         <div className="min-w-0 text-xs">
-          <p className="font-bold text-pink-600">สินค้าทดแทน</p>
+          <p className="font-bold text-indigo-600">สินค้าทดแทน</p>
           <p className="font-bold text-slate-800">{sub.product_name}</p>
           <p className="text-slate-500">รหัส {sub.product_code}</p>
         </div>
       </div>
-      <p className="text-xs text-pink-700 sm:col-span-3">
+      <p className="text-xs text-indigo-700 sm:col-span-3">
         <span className="font-bold">เหตุผล:</span> {sub.reason}
-        {sub.created_by_name && <span className="text-pink-400"> · โดย {sub.created_by_name}</span>}
+        {sub.created_by_name && <span className="text-indigo-400"> · โดย {sub.created_by_name}</span>}
       </p>
     </div>
   );
@@ -151,7 +151,7 @@ export function AuditList({ logs, itemNames }: { logs: AuditLogRow[]; itemNames?
 /** ป้ายเล็กบอกว่าบิลมีปัญหา (สาขาแจ้งของไม่ครบ) หรือแก้ไขแล้ว */
 export function IssueBadge({ bill }: { bill: Pick<BillDetail, 'issue_status'> }) {
   if (bill.issue_status === 'open') {
-    return <span className="inline-flex items-center gap-1 rounded-full bg-rose-100 px-2.5 py-0.5 text-[11px] font-black text-rose-700 ring-1 ring-rose-200">⚠️ ของไม่ครบ · รอแก้ไข</span>;
+    return <span className="inline-flex items-center gap-1 rounded-full bg-sky-100 px-2.5 py-0.5 text-[11px] font-black text-sky-700 ring-1 ring-sky-200">⚠️ ของไม่ครบ · รอแก้ไข</span>;
   }
   if (bill.issue_status === 'resolved') {
     return <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 ring-1 ring-emerald-100">✅ แก้ไขปัญหาแล้ว</span>;
@@ -165,8 +165,8 @@ export function IssueBanner({ bill, onResolve }: { bill: BillDetail; onResolve?:
   const missing = bill.items.filter((item) => !item.is_removed && item.received_state === 'missing');
   const open = bill.issue_status === 'open';
   return (
-    <section className={`rounded-2xl p-4 ring-1 ${open ? 'bg-rose-50 ring-rose-200' : 'bg-emerald-50/60 ring-emerald-100'}`}>
-      <p className={`text-sm font-black ${open ? 'text-rose-700' : 'text-emerald-700'}`}>
+    <section className={`rounded-2xl p-4 ring-1 ${open ? 'bg-sky-50 ring-sky-200' : 'bg-emerald-50/60 ring-emerald-100'}`}>
+      <p className={`text-sm font-black ${open ? 'text-sky-700' : 'text-emerald-700'}`}>
         {open ? '⚠️ สาขาแจ้งว่าได้รับของไม่ครบ — รอสำนักงานใหญ่แก้ไข' : '✅ แก้ไขปัญหาแล้ว'}
       </p>
       <p className="mt-0.5 text-[11px] text-slate-500">
@@ -176,8 +176,8 @@ export function IssueBanner({ bill, onResolve }: { bill: BillDetail; onResolve?:
       {missing.length > 0 ? (
         <ul className="mt-2 space-y-1 text-xs">
           {missing.map((item) => (
-            <li key={item.id} className="rounded-lg bg-white/80 px-2.5 py-1.5 ring-1 ring-rose-100">
-              <b>{item.substitution?.product_name ?? item.product_name}</b> ({item.substitution?.product_code ?? item.product_code}) — <span className="text-rose-600">{item.received_note ?? '-'}</span>
+            <li key={item.id} className="rounded-lg bg-white/80 px-2.5 py-1.5 ring-1 ring-sky-100">
+              <b>{item.substitution?.product_name ?? item.product_name}</b> ({item.substitution?.product_code ?? item.product_code}) — <span className="text-sky-600">{item.received_note ?? '-'}</span>
             </li>
           ))}
         </ul>
@@ -190,7 +190,7 @@ export function IssueBanner({ bill, onResolve }: { bill: BillDetail; onResolve?:
         </p>
       )}
       {open && onResolve && (
-        <button type="button" onClick={onResolve} className="mt-3 rounded-xl bg-rose-600 px-4 py-2 text-sm font-black text-white shadow-sm hover:bg-rose-700">
+        <button type="button" onClick={onResolve} className="mt-3 rounded-xl bg-sky-600 px-4 py-2 text-sm font-black text-white shadow-sm hover:bg-sky-700">
           แก้ไขปัญหา / ยกยอดไปบิลถัดไป
         </button>
       )}
@@ -222,7 +222,7 @@ export function RemovedItems({ bill }: { bill: BillDetail }) {
                 <p className="text-sm font-bold text-slate-700">
                   {item.product_name} <span className="font-mono text-xs font-normal text-slate-400">({item.product_code})</span>
                 </p>
-                <p className="mt-0.5 font-bold text-rose-600">เหตุผล: {log?.reason || 'ไม่ได้ระบุ'}</p>
+                <p className="mt-0.5 font-bold text-sky-600">เหตุผล: {log?.reason || 'ไม่ได้ระบุ'}</p>
                 {log && (
                   <p className="text-slate-400">
                     {formatDateTime(log.created_at)} · {log.admin_name}
@@ -242,7 +242,7 @@ export function QtyLine({ bill, item }: { bill: Pick<BillDetail, 'audit_logs'>; 
   if (!isPartial(item)) {
     return (
       <p className="mt-1 text-xs text-slate-600">
-        สั่ง <b className="text-pink-700">{formatNumber(item.stock_on_hand)}</b> ชิ้น
+        สั่ง <b className="text-indigo-700">{formatNumber(item.stock_on_hand)}</b> ชิ้น
       </p>
     );
   }

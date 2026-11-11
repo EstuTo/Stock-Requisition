@@ -12,13 +12,14 @@ export const GET = handle(async (request: NextRequest) => {
   const branch = branchId ? await getBranch(branchId) : null;
   if (!branch) return NextResponse.json({ branch: null, awaitingReceipt: 0 });
   // บิลที่สำนักงานใหญ่จัดส่งแล้ว รอสาขากดยืนยันรับ — ใช้แสดงจุดแจ้งเตือนที่แท็บ "ติดตามสถานะ"
-  const { count, error } = await getServiceClient()
+  // ไม่ใช้ head: true เพราะคำขอแบบ HEAD ไม่มีข้อความ error ให้เห็นสาเหตุจริง
+  const { data, error } = await getServiceClient()
     .from('bills')
-    .select('id', { count: 'exact', head: true })
+    .select('id')
     .eq('branch_id', branch.id)
     .eq('status', 'shipped');
   if (error) throw fromDbError(error);
-  return NextResponse.json({ branch, awaitingReceipt: count ?? 0 });
+  return NextResponse.json({ branch, awaitingReceipt: data?.length ?? 0 });
 });
 
 export const POST = handle(async (request: NextRequest) => {

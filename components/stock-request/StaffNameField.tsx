@@ -73,7 +73,7 @@ export default function StaffNameField({
                 type="button"
                 onClick={() => onChange(name)}
                 aria-pressed={active}
-                className={`rounded-full px-3 py-1.5 text-xs font-bold ring-1 transition ${active ? 'bg-pink-500 text-white ring-pink-500' : 'bg-pink-50 text-pink-700 ring-pink-100 hover:bg-pink-100'}`}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold ring-1 transition ${active ? 'bg-indigo-500 text-white ring-indigo-500' : 'bg-indigo-50 text-indigo-700 ring-indigo-100 hover:bg-indigo-100'}`}
               >
                 {active ? '✓' : '👤'} {name}
               </button>
